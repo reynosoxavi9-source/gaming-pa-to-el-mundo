@@ -1,67 +1,438 @@
+
+```html
 <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<html lang="es"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Gaming Pa' To' El Mundo</title>
+<title>Gaming Pa' To' El Mundo</title>
 
-<style> * { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: Arial, sans-serif; background: #080b18; color: white; } .portada { min-height: 100vh; background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url("portada.png"); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; text-align: center; padding: 30px; } .contenido-portada { width: 100%; max-width: 1100px; padding-top: 350px; } .contenido-portada h1 { font-size: 60px; font-weight: bold; text-shadow: 0 5px 20px black; margin-bottom: 15px; } .contenido-portada p { font-size: 25px; font-weight: bold; text-shadow: 0 3px 10px black; margin-bottom: 35px; } .botones { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; } .botones button { min-width: 180px; padding: 17px 25px; border: 2px solid white; border-radius: 15px; background: rgba(0, 0, 0, 0.65); color: white; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.2s; } .botones button:hover { transform: scale(1.08); background: rgba(20, 100, 255, 0.8); box-shadow: 0 0 25px #00aaff; } .juegos { padding: 50px 20px; text-align: center; background: #080b18; } .juegos h2 { font-size: 35px; margin-bottom: 15px; } .juegos p { font-size: 18px; margin-bottom: 30px; } .juego-boton { padding: 15px 25px; margin: 10px; border: none; border-radius: 12px; background: #1677ff; color: white; font-size: 17px; font-weight: bold; cursor: pointer; } .juego-boton:hover { transform: scale(1.05); } @media (max-width: 600px) { .contenido-portada { padding-top: 100px; } .contenido-portada h1 { font-size: 40px; } .contenido-portada p { font-size: 20px; } .botones button { width: 100%; max-width: 300px; } } </style>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  font-family: Arial, sans-serif;
+  background: #080b18;
+  color: white;
+}
 
-  <meta name="google-site-verification" content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw" />
+/* PORTADA */
+.portada {
+  min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
+    url("portada.png");
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  padding: 30px;
+}
+
+.contenido-portada {
+  width: 100%;
+  max-width: 1100px;
+  padding-top: 350px;
+}
+
+.contenido-portada h1 {
+  font-size: 60px;
+  font-weight: bold;
+  text-shadow: 0 5px 20px black;
+  margin-bottom: 15px;
+}
+
+.contenido-portada p {
+  font-size: 25px;
+  font-weight: bold;
+  text-shadow: 0 3px 10px black;
+  margin-bottom: 35px;
+}
+
+.botones {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.botones button {
+  min-width: 180px;
+  padding: 17px 25px;
+  border: 2px solid white;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.botones button:hover {
+  transform: scale(1.08);
+  background: rgba(20, 100, 255, 0.8);
+  box-shadow: 0 0 25px #00aaff;
+}
+
+/* JUEGOS */
+.juegos {
+  padding: 60px 20px;
+  text-align: center;
+  background: #080b18;
+}
+
+.juegos h2 {
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+
+.juegos p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+/* JUEGO */
+.juego {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #11182c;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 150, 255, 0.25);
+}
+
+.juego h3 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.cancha {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 450px;
+  margin: auto;
+  background: #168a3b;
+  border: 5px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cancha::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 100%;
+  background: white;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.circulo {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border: 4px solid white;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.porteria {
+  position: absolute;
+  width: 35px;
+  height: 150px;
+  top: 150px;
+  border: 4px solid white;
+}
+
+.porteria.izquierda {
+  left: -5px;
+}
+
+.porteria.derecha {
+  right: -5px;
+}
+
+.jugador {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  background: #1677ff;
+  border: 3px solid white;
+  border-radius: 50%;
+  left: 100px;
+  top: 200px;
+}
+
+.pelota {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: white;
+  border: 3px solid #111;
+  border-radius: 50%;
+  left: 180px;
+  top: 210px;
+}
+
+.marcador {
+  margin: 15px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.controles {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.reiniciar {
+  margin-top: 15px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  background: #1677ff;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.reiniciar:hover {
+  transform: scale(1.05);
+}
+
+/* CELULAR */
+@media (max-width: 600px) {
+  .contenido-portada {
+    padding-top: 100px;
+  }
+
+  .contenido-portada h1 {
+    font-size: 40px;
+  }
+
+  .contenido-portada p {
+    font-size: 20px;
+  }
+
+  .botones button {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .cancha {
+    height: 350px;
+  }
+
+  .porteria {
+    top: 100px;
+    height: 120px;
+  }
+}
+</style>
+
+<meta name="google-site-verification"
+content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw">
 
 </head>
 
 <body>
 
-
-
 <section class="portada">
 
-<div class="contenido-portada">
+  <div class="contenido-portada">
 
-  <div class="botones">
+    <div class="botones">
 
-    <button onclick="location.href='#juegos'">
-      🎮 JUGAR
-    </button>
+      <button onclick="location.href='#juegos'">
+        🎮 JUGAR
+      </button>
 
-    <button onclick="location.href='#juegos'">
-      🕹️ JUEGOS
-    </button>
+      <button onclick="location.href='#juegos'">
+        🕹️ JUEGOS
+      </button>
 
-    <button>
-      ⭐ FAVORITOS
-    </button>
+      <button>
+        ⭐ FAVORITOS
+      </button>
 
-    <button>
-      🟩 CATEGORÍAS
-    </button>
+      <button>
+        🟩 CATEGORÍAS
+      </button>
+
+    </div>
 
   </div>
-
-</div>
 
 </section>
 
 <section class="juegos" id="juegos">
 
-<h2>🔥 Juegos</h2>
+  <h2>🔥 Juegos</h2>
 
-<p>
-  Juegos gratis para jugar directamente desde el navegador.
-</p>
+  <p>
+    Juegos originales para jugar directamente desde el navegador.
+  </p>
 
-<button
-  class="juego-boton"
-  onclick="window.open('https://poki.com/', '_blank')">
-  🎮 Jugar juegos
-</button>
+  <div class="juego">
 
-<button
-  class="juego-boton"
-  onclick="window.open('https://www.crazygames.com/', '_blank')">
-  🔥 Más juegos
-</button>
+    <h3>⚽ Fútbol Pa' To'</h3>
+
+    <div class="marcador">
+      Goles: <span id="goles">0</span>
+    </div>
+
+    <div class="cancha" id="cancha">
+
+      <div class="circulo"></div>
+
+      <div class="porteria izquierda"></div>
+      <div class="porteria derecha"></div>
+
+      <div class="jugador" id="jugador"></div>
+
+      <div class="pelota" id="pelota"></div>
+
+    </div>
+
+    <div class="controles">
+      ⬆️⬇️⬅️➡️ Usa las flechas para moverte.<br>
+      Acércate a la pelota y llévala hasta la portería derecha.
+    </div>
+
+    <button class="reiniciar" onclick="reiniciarJuego()">
+      🔄 Reiniciar juego
+    </button>
+
+  </div>
 
 </section>
 
-</body> </html>
+<script>
+
+const jugador = document.getElementById("jugador");
+const pelota = document.getElementById("pelota");
+const cancha = document.getElementById("cancha");
+const golesTexto = document.getElementById("goles");
+
+let jugadorX = 100;
+let jugadorY = 200;
+
+let pelotaX = 180;
+let pelotaY = 210;
+
+let goles = 0;
+
+const velocidad = 12;
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "ArrowUp") {
+    jugadorY -= velocidad;
+  }
+
+  if (event.key === "ArrowDown") {
+    jugadorY += velocidad;
+  }
+
+  if (event.key === "ArrowLeft") {
+    jugadorX -= velocidad;
+  }
+
+  if (event.key === "ArrowRight") {
+    jugadorX += velocidad;
+  }
+
+  const maxX = cancha.clientWidth - jugador.offsetWidth;
+  const maxY = cancha.clientHeight - jugador.offsetHeight;
+
+  jugadorX = Math.max(0, Math.min(jugadorX, maxX));
+  jugadorY = Math.max(0, Math.min(jugadorY, maxY));
+
+  jugador.style.left = jugadorX + "px";
+  jugador.style.top = jugadorY + "px";
+
+  const distanciaX = Math.abs(jugadorX - pelotaX);
+  const distanciaY = Math.abs(jugadorY - pelotaY);
+
+  if (distanciaX < 60 && distanciaY < 60) {
+
+    pelotaX += (jugadorX < pelotaX ? 15 : -15);
+    pelotaY += (jugadorY < pelotaY ? 5 : -5);
+
+    pelotaX = Math.max(
+      0,
+      Math.min(
+        pelotaX,
+        cancha.clientWidth - pelota.offsetWidth
+      )
+    );
+
+    pelotaY = Math.max(
+      0,
+      Math.min(
+        pelotaY,
+        cancha.clientHeight - pelota.offsetHeight
+      )
+    );
+
+    pelota.style.left = pelotaX + "px";
+    pelota.style.top = pelotaY + "px";
+  }
+
+  if (pelotaX > cancha.clientWidth - 50) {
+
+    goles++;
+
+    golesTexto.textContent = goles;
+
+    pelotaX = 180;
+    pelotaY = 210;
+
+    pelota.style.left = pelotaX + "px";
+    pelota.style.top = pelotaY + "px";
+  }
+
+});
+
+function reiniciarJuego() {
+
+  jugadorX = 100;
+  jugadorY = 200;
+
+  pelotaX = 180;
+  pelotaY = 210;
+
+  goles = 0;
+
+  jugador.style.left = jugadorX + "px";
+  jugador.style.top = jugadorY + "px";
+
+  pelota.style.left = pelotaX + "px";
+  pelota.style.top = pelotaY + "px";
+
+  golesTexto.textContent = goles;
+}
+
+</script>
+
+</body>
+</html>
+```
+
       
