@@ -1,166 +1,62 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gaming Pa' To' El Mundo</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<html lang="es"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Gaming Pa' To' El Mundo</title>
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #080b18;
-      color: white;
-    }
+<style> * { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: Arial, sans-serif; background: #080b18; color: white; } .portada { min-height: 100vh; background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url("portada.png"); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; text-align: center; padding: 30px; } .contenido-portada { width: 100%; max-width: 1100px; padding-top: 180px; } .contenido-portada h1 { font-size: 60px; font-weight: bold; text-shadow: 0 5px 20px black; margin-bottom: 15px; } .contenido-portada p { font-size: 25px; font-weight: bold; text-shadow: 0 3px 10px black; margin-bottom: 35px; } .botones { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; } .botones button { min-width: 180px; padding: 17px 25px; border: 2px solid white; border-radius: 15px; background: rgba(0, 0, 0, 0.65); color: white; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.2s; } .botones button:hover { transform: scale(1.08); background: rgba(20, 100, 255, 0.8); box-shadow: 0 0 25px #00aaff; } .juegos { padding: 50px 20px; text-align: center; background: #080b18; } .juegos h2 { font-size: 35px; margin-bottom: 15px; } .juegos p { font-size: 18px; margin-bottom: 30px; } .juego-boton { padding: 15px 25px; margin: 10px; border: none; border-radius: 12px; background: #1677ff; color: white; font-size: 17px; font-weight: bold; cursor: pointer; } .juego-boton:hover { transform: scale(1.05); } @media (max-width: 600px) { .contenido-portada { padding-top: 100px; } .contenido-portada h1 { font-size: 40px; } .contenido-portada p { font-size: 20px; } .botones button { width: 100%; max-width: 300px; } } </style>
 
-    .portada {
-      min-height: 100vh;
-      background-image:
-        linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
-        url("portada.png");
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 30px;
-    }
-
-    .contenido-portada {
-      width: 100%;
-      max-width: 1100px;
-    }
-
-    .contenido-portada h1 {
-      font-size: 60px;
-      font-weight: bold;
-      text-shadow: 0 5px 20px black;
-      margin-bottom: 15px;
-    }
-
-    .contenido-portada p {
-      font-size: 25px;
-      font-weight: bold;
-      text-shadow: 0 3px 10px black;
-      margin-bottom: 35px;
-    }
-
-    .botones {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .botones button {
-      min-width: 180px;
-      padding: 17px 25px;
-      border: 2px solid white;
-      border-radius: 15px;
-      background: rgba(0, 0, 0, 0.65);
-      color: white;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .botones button:hover {
-      transform: scale(1.08);
-      background: rgba(20, 100, 255, 0.8);
-      box-shadow: 0 0 25px #00aaff;
-    }
-
-    .juegos {
-      padding: 50px 20px;
-      text-align: center;
-      background: #080b18;
-    }
-
-    .juegos h2 {
-      font-size: 35px;
-      margin-bottom: 15px;
-    }
-
-    .juegos p {
-      font-size: 18px;
-      margin-bottom: 30px;
-    }
-
-    .juego-boton {
-      padding: 15px 25px;
-      margin: 10px;
-      border: none;
-      border-radius: 12px;
-      background: #1677ff;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .juego-boton:hover {
-      transform: scale(1.05);
-    }
-  </style>
 </head>
 
 <body>
 
-  <section class="portada">
+<section class="portada">
 
-    <div class="contenido-portada">
+<div class="contenido-portada">
 
-      
+  <div class="botones">
 
-
-
-
-      
-    
-
-      <div class="botones">
-        <button onclick="location.href='#juegos'">🎮 JUGAR</button>
-
-        <button onclick="location.href='#juegos'">🕹️ JUEGOS</button>
-
-        <button>⭐ FAVORITOS</button>
-
-        <button>🟩 CATEGORÍAS</button>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="juegos" id="juegos">
-
-    <h2>🔥 Juegos</h2>
-
-    <p>
-      Juegos gratis para jugar directamente desde el navegador.
-    </p>
-
-    <button
-      class="juego-boton"
-      onclick="window.open('https://poki.com/', '_blank')">
-      🎮 Jugar juegos
+    <button onclick="location.href='#juegos'">
+      🎮 JUGAR
     </button>
 
-    <button
-      class="juego-boton"
-      onclick="window.open('https://www.crazygames.com/', '_blank')">
-      🔥 Más juegos
+    <button onclick="location.href='#juegos'">
+      🕹️ JUEGOS
     </button>
 
-  </section>
+    <button>
+      ⭐ FAVORITOS
+    </button>
 
-</body>
-</html>
+    <button>
+      🟩 CATEGORÍAS
+    </button>
+
+  </div>
+
+</div>
+
+</section>
+
+<section class="juegos" id="juegos">
+
+<h2>🔥 Juegos</h2>
+
+<p>
+  Juegos gratis para jugar directamente desde el navegador.
+</p>
+
+<button
+  class="juego-boton"
+  onclick="window.open('https://poki.com/', '_blank')">
+  🎮 Jugar juegos
+</button>
+
+<button
+  class="juego-boton"
+  onclick="window.open('https://www.crazygames.com/', '_blank')">
+  🔥 Más juegos
+</button>
+
+</section>
+
+</body> </html>
+      
