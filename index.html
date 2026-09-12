@@ -1,4 +1,3 @@
-
 ```html
 <!DOCTYPE html>
 <html lang="es">
@@ -21,12 +20,17 @@ body {
   color: white;
 }
 
-/* PORTADA */
+/* =========================
+   PORTADA
+========================= */
+
 .portada {
   min-height: 100vh;
+
   background-image:
     linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
     url("portada.png");
+
   background-size: cover;
   background-position: center;
 
@@ -44,20 +48,6 @@ body {
   padding-top: 350px;
 }
 
-.contenido-portada h1 {
-  font-size: 60px;
-  font-weight: bold;
-  text-shadow: 0 5px 20px black;
-  margin-bottom: 15px;
-}
-
-.contenido-portada p {
-  font-size: 25px;
-  font-weight: bold;
-  text-shadow: 0 3px 10px black;
-  margin-bottom: 35px;
-}
-
 .botones {
   display: flex;
   justify-content: center;
@@ -68,12 +58,16 @@ body {
 .botones button {
   min-width: 180px;
   padding: 17px 25px;
+
   border: 2px solid white;
   border-radius: 15px;
+
   background: rgba(0, 0, 0, 0.65);
   color: white;
+
   font-size: 18px;
   font-weight: bold;
+
   cursor: pointer;
   transition: 0.2s;
 }
@@ -84,7 +78,10 @@ body {
   box-shadow: 0 0 25px #00aaff;
 }
 
-/* JUEGOS */
+/* =========================
+   SECCIÓN DE JUEGOS
+========================= */
+
 .juegos {
   padding: 60px 20px;
   text-align: center;
@@ -101,13 +98,20 @@ body {
   margin-bottom: 30px;
 }
 
-/* JUEGO */
+/* =========================
+   JUEGO
+========================= */
+
 .juego {
   max-width: 900px;
   margin: 30px auto;
+
   background: #11182c;
+
   padding: 25px;
+
   border-radius: 20px;
+
   box-shadow: 0 0 30px rgba(0, 150, 255, 0.25);
 }
 
@@ -116,45 +120,82 @@ body {
   margin-bottom: 15px;
 }
 
+/* =========================
+   MARCADOR
+========================= */
+
+.marcador {
+  margin: 15px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* =========================
+   CANCHA
+========================= */
+
 .cancha {
   position: relative;
+
   width: 100%;
   max-width: 800px;
   height: 450px;
+
   margin: auto;
+
   background: #168a3b;
+
   border: 5px solid white;
   border-radius: 10px;
+
   overflow: hidden;
+
+  touch-action: none;
 }
 
 .cancha::before {
   content: "";
+
   position: absolute;
+
   width: 5px;
   height: 100%;
+
   background: white;
+
   left: 50%;
   top: 0;
+
   transform: translateX(-50%);
 }
 
 .circulo {
   position: absolute;
+
   width: 130px;
   height: 130px;
+
   border: 4px solid white;
   border-radius: 50%;
+
   left: 50%;
   top: 50%;
+
   transform: translate(-50%, -50%);
 }
 
+/* =========================
+   PORTERÍAS
+========================= */
+
 .porteria {
   position: absolute;
+
   width: 35px;
   height: 150px;
+
   top: 150px;
+
   border: 4px solid white;
 }
 
@@ -166,49 +207,124 @@ body {
   right: -5px;
 }
 
+/* =========================
+   JUGADOR
+========================= */
+
 .jugador {
   position: absolute;
+
   width: 45px;
   height: 45px;
+
   background: #1677ff;
+
   border: 3px solid white;
   border-radius: 50%;
+
   left: 100px;
   top: 200px;
+
+  z-index: 5;
 }
+
+/* =========================
+   PELOTA
+========================= */
 
 .pelota {
   position: absolute;
+
   width: 25px;
   height: 25px;
+
   background: white;
+
   border: 3px solid #111;
   border-radius: 50%;
+
   left: 180px;
   top: 210px;
+
+  z-index: 4;
 }
 
-.marcador {
-  margin: 15px;
-  font-size: 25px;
+/* =========================
+   CONTROLES CELULAR
+========================= */
+
+.controles-movil {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 25px;
+}
+
+.fila-controles {
+  display: flex;
+  gap: 8px;
+}
+
+.boton-control {
+  width: 65px;
+  height: 65px;
+
+  border: 2px solid white;
+  border-radius: 15px;
+
+  background: #1677ff;
+
+  color: white;
+
+  font-size: 28px;
   font-weight: bold;
+
+  cursor: pointer;
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  touch-action: manipulation;
 }
 
-.controles {
+.boton-control:active {
+  transform: scale(0.9);
+  background: #005bd6;
+}
+
+/* =========================
+   TEXTO
+========================= */
+
+.texto-controles {
   margin-top: 20px;
+
   font-size: 16px;
   line-height: 1.8;
 }
 
+/* =========================
+   REINICIAR
+========================= */
+
 .reiniciar {
   margin-top: 15px;
+
   padding: 12px 25px;
+
   border: none;
   border-radius: 10px;
+
   background: #1677ff;
   color: white;
+
   font-size: 16px;
   font-weight: bold;
+
   cursor: pointer;
 }
 
@@ -216,23 +332,23 @@ body {
   transform: scale(1.05);
 }
 
-/* CELULAR */
+/* =========================
+   CELULAR
+========================= */
+
 @media (max-width: 600px) {
+
   .contenido-portada {
     padding-top: 100px;
-  }
-
-  .contenido-portada h1 {
-    font-size: 40px;
-  }
-
-  .contenido-portada p {
-    font-size: 20px;
   }
 
   .botones button {
     width: 100%;
     max-width: 300px;
+  }
+
+  .juego {
+    padding: 15px;
   }
 
   .cancha {
@@ -243,15 +359,27 @@ body {
     top: 100px;
     height: 120px;
   }
+
+  .boton-control {
+    width: 60px;
+    height: 60px;
+  }
 }
 </style>
 
-<meta name="google-site-verification"
-content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw">
+<!-- GOOGLE SEARCH CONSOLE -->
+<meta
+  name="google-site-verification"
+  content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw"
+/>
 
 </head>
 
 <body>
+
+<!-- =========================
+     PORTADA
+========================= -->
 
 <section class="portada">
 
@@ -281,6 +409,11 @@ content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw">
 
 </section>
 
+
+<!-- =========================
+     JUEGOS
+========================= -->
+
 <section class="juegos" id="juegos">
 
   <h2>🔥 Juegos</h2>
@@ -288,6 +421,9 @@ content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw">
   <p>
     Juegos originales para jugar directamente desde el navegador.
   </p>
+
+
+  <!-- JUEGO DE FÚTBOL -->
 
   <div class="juego">
 
@@ -297,11 +433,15 @@ content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw">
       Goles: <span id="goles">0</span>
     </div>
 
+
+    <!-- CANCHA -->
+
     <div class="cancha" id="cancha">
 
       <div class="circulo"></div>
 
       <div class="porteria izquierda"></div>
+
       <div class="porteria derecha"></div>
 
       <div class="jugador" id="jugador"></div>
@@ -310,25 +450,92 @@ content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw">
 
     </div>
 
-    <div class="controles">
-      ⬆️⬇️⬅️➡️ Usa las flechas para moverte.<br>
-      Acércate a la pelota y llévala hasta la portería derecha.
+
+    <!-- CONTROLES PARA CELULAR -->
+
+    <div class="controles-movil">
+
+      <div class="fila-controles">
+
+        <button
+          class="boton-control"
+          data-direccion="arriba">
+          ⬆️
+        </button>
+
+      </div>
+
+      <div class="fila-controles">
+
+        <button
+          class="boton-control"
+          data-direccion="izquierda">
+          ⬅️
+        </button>
+
+        <button
+          class="boton-control"
+          data-direccion="abajo">
+          ⬇️
+        </button>
+
+        <button
+          class="boton-control"
+          data-direccion="derecha">
+          ➡️
+        </button>
+
+      </div>
+
     </div>
 
-    <button class="reiniciar" onclick="reiniciarJuego()">
+
+    <div class="texto-controles">
+
+      💻 PC: usa las flechas del teclado.<br>
+
+      📱 Celular: usa los botones de arriba.<br>
+
+      ⚽ Lleva la pelota hasta la portería derecha.
+
+    </div>
+
+
+    <button
+      class="reiniciar"
+      onclick="reiniciarJuego()">
+
       🔄 Reiniciar juego
+
     </button>
 
   </div>
 
 </section>
 
+
 <script>
 
-const jugador = document.getElementById("jugador");
-const pelota = document.getElementById("pelota");
-const cancha = document.getElementById("cancha");
-const golesTexto = document.getElementById("goles");
+/* =========================
+   ELEMENTOS
+========================= */
+
+const jugador =
+  document.getElementById("jugador");
+
+const pelota =
+  document.getElementById("pelota");
+
+const cancha =
+  document.getElementById("cancha");
+
+const golesTexto =
+  document.getElementById("goles");
+
+
+/* =========================
+   VARIABLES
+========================= */
 
 let jugadorX = 100;
 let jugadorY = 200;
@@ -340,75 +547,242 @@ let goles = 0;
 
 const velocidad = 12;
 
-document.addEventListener("keydown", function(event) {
 
-  if (event.key === "ArrowUp") {
+/* =========================
+   ACTUALIZAR JUEGO
+========================= */
+
+function moverJugador(direccion) {
+
+  if (direccion === "arriba") {
     jugadorY -= velocidad;
   }
 
-  if (event.key === "ArrowDown") {
+  if (direccion === "abajo") {
     jugadorY += velocidad;
   }
 
-  if (event.key === "ArrowLeft") {
+  if (direccion === "izquierda") {
     jugadorX -= velocidad;
   }
 
-  if (event.key === "ArrowRight") {
+  if (direccion === "derecha") {
     jugadorX += velocidad;
   }
 
-  const maxX = cancha.clientWidth - jugador.offsetWidth;
-  const maxY = cancha.clientHeight - jugador.offsetHeight;
 
-  jugadorX = Math.max(0, Math.min(jugadorX, maxX));
-  jugadorY = Math.max(0, Math.min(jugadorY, maxY));
+  /* LÍMITES */
 
-  jugador.style.left = jugadorX + "px";
-  jugador.style.top = jugadorY + "px";
+  const maxX =
+    cancha.clientWidth -
+    jugador.offsetWidth;
 
-  const distanciaX = Math.abs(jugadorX - pelotaX);
-  const distanciaY = Math.abs(jugadorY - pelotaY);
+  const maxY =
+    cancha.clientHeight -
+    jugador.offsetHeight;
 
-  if (distanciaX < 60 && distanciaY < 60) {
 
-    pelotaX += (jugadorX < pelotaX ? 15 : -15);
-    pelotaY += (jugadorY < pelotaY ? 5 : -5);
-
-    pelotaX = Math.max(
+  jugadorX =
+    Math.max(
       0,
-      Math.min(
-        pelotaX,
-        cancha.clientWidth - pelota.offsetWidth
-      )
+      Math.min(jugadorX, maxX)
     );
 
-    pelotaY = Math.max(
+  jugadorY =
+    Math.max(
       0,
-      Math.min(
-        pelotaY,
-        cancha.clientHeight - pelota.offsetHeight
-      )
+      Math.min(jugadorY, maxY)
     );
 
-    pelota.style.left = pelotaX + "px";
-    pelota.style.top = pelotaY + "px";
+
+  /* POSICIÓN */
+
+  jugador.style.left =
+    jugadorX + "px";
+
+  jugador.style.top =
+    jugadorY + "px";
+
+
+  /* =========================
+     PELOTA
+  ========================= */
+
+  const distanciaX =
+    Math.abs(jugadorX - pelotaX);
+
+  const distanciaY =
+    Math.abs(jugadorY - pelotaY);
+
+
+  if (
+    distanciaX < 60 &&
+    distanciaY < 60
+  ) {
+
+    if (direccion === "derecha") {
+      pelotaX += 18;
+    }
+
+    if (direccion === "izquierda") {
+      pelotaX -= 18;
+    }
+
+    if (direccion === "arriba") {
+      pelotaY -= 12;
+    }
+
+    if (direccion === "abajo") {
+      pelotaY += 12;
+    }
+
+
+    /* LÍMITES DE PELOTA */
+
+    pelotaX =
+      Math.max(
+        0,
+        Math.min(
+          pelotaX,
+          cancha.clientWidth -
+          pelota.offsetWidth
+        )
+      );
+
+    pelotaY =
+      Math.max(
+        0,
+        Math.min(
+          pelotaY,
+          cancha.clientHeight -
+          pelota.offsetHeight
+        )
+      );
+
+
+    pelota.style.left =
+      pelotaX + "px";
+
+    pelota.style.top =
+      pelotaY + "px";
   }
 
-  if (pelotaX > cancha.clientWidth - 50) {
+
+  /* =========================
+     GOL
+  ========================= */
+
+  if (
+    pelotaX >
+    cancha.clientWidth - 50
+  ) {
 
     goles++;
 
-    golesTexto.textContent = goles;
+    golesTexto.textContent =
+      goles;
+
 
     pelotaX = 180;
     pelotaY = 210;
 
-    pelota.style.left = pelotaX + "px";
-    pelota.style.top = pelotaY + "px";
+
+    pelota.style.left =
+      pelotaX + "px";
+
+    pelota.style.top =
+      pelotaY + "px";
   }
 
-});
+}
+
+
+/* =========================
+   TECLADO PC
+========================= */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "ArrowUp"
+    ) {
+      moverJugador("arriba");
+    }
+
+    if (
+      event.key === "ArrowDown"
+    ) {
+      moverJugador("abajo");
+    }
+
+    if (
+      event.key === "ArrowLeft"
+    ) {
+      moverJugador("izquierda");
+    }
+
+    if (
+      event.key === "ArrowRight"
+    ) {
+      moverJugador("derecha");
+    }
+
+  }
+);
+
+
+/* =========================
+   BOTONES CELULAR
+========================= */
+
+const botonesControl =
+  document.querySelectorAll(
+    ".boton-control"
+  );
+
+
+botonesControl.forEach(
+  function(boton) {
+
+    const direccion =
+      boton.dataset.direccion;
+
+
+    /* TOCAR */
+
+    boton.addEventListener(
+      "touchstart",
+      function(event) {
+
+        event.preventDefault();
+
+        moverJugador(direccion);
+
+      },
+      { passive: false }
+    );
+
+
+    /* MOUSE */
+
+    boton.addEventListener(
+      "mousedown",
+      function() {
+
+        moverJugador(direccion);
+
+      }
+    );
+
+  }
+);
+
+
+/* =========================
+   REINICIAR
+========================= */
 
 function reiniciarJuego() {
 
@@ -420,13 +794,23 @@ function reiniciarJuego() {
 
   goles = 0;
 
-  jugador.style.left = jugadorX + "px";
-  jugador.style.top = jugadorY + "px";
 
-  pelota.style.left = pelotaX + "px";
-  pelota.style.top = pelotaY + "px";
+  jugador.style.left =
+    jugadorX + "px";
 
-  golesTexto.textContent = goles;
+  jugador.style.top =
+    jugadorY + "px";
+
+
+  pelota.style.left =
+    pelotaX + "px";
+
+  pelota.style.top =
+    pelotaY + "px";
+
+
+  golesTexto.textContent =
+    goles;
 }
 
 </script>
@@ -434,5 +818,3 @@ function reiniciarJuego() {
 </body>
 </html>
 ```
-
-      
