@@ -1,4 +1,4 @@
-``html
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,3 +18,548 @@ body{font-family:Arial,sans-serif;background:#080b18;color:white}
  display:flex;justify-content:center;align-items:center;
  text-align:center;padding:30px
 }
+.contenido-portada{width:100%;max-width:1100px;padding-top:350px}
+.botones{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.botones button{
+ min-width:180px;padding:17px 25px;border:2px solid white;
+ border-radius:15px;background:rgba(0,0,0,.65);color:white;
+ font-size:18px;font-weight:bold;cursor:pointer;transition:.2s
+}
+.botones button:hover{transform:scale(1.08);background:rgba(20,100,255,.8)}
+
+/* JUEGOS */
+.juegos{padding:60px 15px;text-align:center;background:#080b18}
+.juegos h2{font-size:35px;margin-bottom:15px}
+.juegos>p{font-size:18px;margin-bottom:30px}
+.juego{
+ max-width:850px;margin:35px auto;padding:25px;background:#11182c;
+ border-radius:20px;box-shadow:0 0 30px rgba(0,150,255,.2)
+}
+.juego h3{font-size:28px;margin-bottom:15px}
+.marcador{font-size:23px;font-weight:bold;margin:15px}
+
+/* CANCHA */
+.cancha{
+ position:relative;width:100%;max-width:800px;height:400px;margin:auto;
+ background:#168a3b;border:5px solid white;border-radius:10px;overflow:hidden;
+ touch-action:none
+}
+.cancha:before{
+ content:"";position:absolute;width:5px;height:100%;background:white;
+ left:50%;transform:translateX(-50%)
+}
+.circulo{
+ position:absolute;width:120px;height:120px;border:4px solid white;
+ border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)
+}
+.porteria{position:absolute;width:35px;height:140px;top:125px;border:4px solid white}
+.porteria.izquierda{left:-5px}.porteria.derecha{right:-5px}
+.jugador{
+ position:absolute;width:45px;height:45px;background:#1677ff;
+ border:3px solid white;border-radius:50%;left:100px;top:175px
+}
+.pelota{
+ position:absolute;width:25px;height:25px;background:white;
+ border:3px solid #111;border-radius:50%;left:180px;top:185px
+}
+
+/* CANVAS */
+canvas{
+ display:block;width:100%;max-width:700px;height:auto;
+ margin:auto;background:#050914;border:3px solid white;border-radius:12px
+}
+
+/* BOTONES */
+.controles-movil{display:flex;flex-direction:column;align-items:center;gap:7px;margin-top:20px}
+.fila{display:flex;gap:7px}
+.control{
+ width:62px;height:62px;border:2px solid white;border-radius:14px;
+ background:#1677ff;color:white;font-size:25px;font-weight:bold;
+ cursor:pointer;touch-action:manipulation
+}
+.control:active{transform:scale(.9)}
+.reiniciar{
+ margin-top:18px;padding:12px 25px;border:0;border-radius:10px;
+ background:#1677ff;color:white;font-size:16px;font-weight:bold;cursor:pointer
+}
+.info{margin-top:15px;line-height:1.7}
+
+/* CARRERAS */
+.carril{
+ position:relative;width:320px;height:480px;max-width:100%;
+ margin:auto;background:#333;border:5px solid white;
+ overflow:hidden;border-radius:12px
+}
+.linea{
+ position:absolute;width:8px;height:70px;background:white;
+ left:70px;top:0;box-shadow:160px 0 white;
+ animation:carretera .5s linear infinite
+}
+@keyframes carretera{to{transform:translateY(90px)}}
+.auto{
+ position:absolute;width:45px;height:75px;background:#1677ff;
+ border:3px solid white;border-radius:10px;bottom:25px;left:137px
+}
+.enemigo{
+ position:absolute;width:45px;height:75px;background:#e22;
+ border:3px solid white;border-radius:10px;top:-90px
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+ .contenido-portada{padding-top:100px}
+ .botones button{width:100%;max-width:300px}
+ .juego{padding:15px}
+ .cancha{height:330px}
+ .porteria{top:95px;height:120px}
+ .control{width:58px;height:58px}
+}
+</style>
+
+<!-- GOOGLE SEARCH CONSOLE -->
+<meta name="google-site-verification"
+content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw">
+
+</head>
+
+<body>
+
+<!-- PORTADA -->
+<section class="portada">
+<div class="contenido-portada">
+<div class="botones">
+<button onclick="location.href='#juegos'">🎮 JUGAR</button>
+<button onclick="location.href='#juegos'">🕹️ JUEGOS</button>
+<button onclick="location.href='#juegos'">⭐ FAVORITOS</button>
+<button onclick="location.href='#juegos'">🟩 CATEGORÍAS</button>
+</div>
+</div>
+</section>
+
+<!-- JUEGOS -->
+<section class="juegos" id="juegos">
+
+<h2>🔥 Juegos</h2>
+<p>Juegos originales para jugar directamente desde el navegador.</p>
+
+<!-- FÚTBOL -->
+<div class="juego">
+<h3>⚽ Fútbol Pa' To'</h3>
+<div class="marcador">Goles: <span id="goles">0</span></div>
+
+<div class="cancha" id="cancha">
+<div class="circulo"></div>
+<div class="porteria izquierda"></div>
+<div class="porteria derecha"></div>
+<div class="jugador" id="jugador"></div>
+<div class="pelota" id="pelota"></div>
+</div>
+
+<div class="controles-movil">
+<div class="fila">
+<button class="control" onclick="moverFutbol('arriba')">⬆️</button>
+</div>
+<div class="fila">
+<button class="control" onclick="moverFutbol('izquierda')">⬅️</button>
+<button class="control" onclick="moverFutbol('abajo')">⬇️</button>
+<button class="control" onclick="moverFutbol('derecha')">➡️</button>
+</div>
+</div>
+
+<div class="info">💻 PC: usa las flechas. 📱 Celular: usa los botones.</div>
+<button class="reiniciar" onclick="reiniciarFutbol()">🔄 Reiniciar</button>
+</div>
+
+
+<!-- SNAKE -->
+<div class="juego">
+<h3>🐍 Snake</h3>
+<div class="marcador">Puntos: <span id="snakeScore">0</span></div>
+
+<canvas id="snakeCanvas" width="400" height="400"></canvas>
+
+<div class="controles-movil">
+<div class="fila">
+<button class="control" onclick="snakeDir('up')">⬆️</button>
+</div>
+<div class="fila">
+<button class="control" onclick="snakeDir('left')">⬅️</button>
+<button class="control" onclick="snakeDir('down')">⬇️</button>
+<button class="control" onclick="snakeDir('right')">➡️</button>
+</div>
+</div>
+
+<div class="info">🐍 Come la comida y no choques contigo.</div>
+<button class="reiniciar" onclick="restartSnake()">🔄 Reiniciar</button>
+</div>
+
+
+<!-- ROMPE BLOQUES -->
+<div class="juego">
+<h3>🧱 Rompe Bloques</h3>
+<div class="marcador">Puntos: <span id="brickScore">0</span></div>
+
+<canvas id="brickCanvas" width="700" height="400"></canvas>
+
+<div class="controles-movil">
+<div class="fila">
+<button class="control" onclick="movePaddle(-1)">⬅️</button>
+<button class="control" onclick="movePaddle(1)">➡️</button>
+</div>
+</div>
+
+<div class="info">💻 Usa ⬅️ ➡️. 📱 Usa los botones.</div>
+<button class="reiniciar" onclick="restartBrick()">🔄 Reiniciar</button>
+</div>
+
+
+<!-- CARRERAS -->
+<div class="juego">
+<h3>🏎️ Carreras</h3>
+<div class="marcador">Puntos: <span id="raceScore">0</span></div>
+
+<div class="carril" id="carril">
+<div class="linea"></div>
+<div class="auto" id="auto"></div>
+<div class="enemigo" id="enemigo"></div>
+</div>
+
+<div class="controles-movil">
+<div class="fila">
+<button class="control" onclick="moveCar(-1)">⬅️</button>
+<button class="control" onclick="moveCar(1)">➡️</button>
+</div>
+</div>
+
+<div class="info">🏎️ Esquiva los autos.</div>
+<button class="reiniciar" onclick="restartRace()">🔄 Reiniciar</button>
+</div>
+
+</section>
+
+
+<script>
+/* =========================
+FÚTBOL
+========================= */
+
+const jugador=document.getElementById("jugador");
+const pelota=document.getElementById("pelota");
+const cancha=document.getElementById("cancha");
+const golesTexto=document.getElementById("goles");
+
+let fx=100,fy=175,px=180,py=185,goles=0;
+
+function moverFutbol(dir){
+ const v=12;
+
+ if(dir==="arriba")fy-=v;
+ if(dir==="abajo")fy+=v;
+ if(dir==="izquierda")fx-=v;
+ if(dir==="derecha")fx+=v;
+
+ fx=Math.max(0,Math.min(fx,cancha.clientWidth-jugador.offsetWidth));
+ fy=Math.max(0,Math.min(fy,cancha.clientHeight-jugador.offsetHeight));
+
+ jugador.style.left=fx+"px";
+ jugador.style.top=fy+"px";
+
+ if(Math.abs(fx-px)<60&&Math.abs(fy-py)<60){
+  if(dir==="derecha")px+=18;
+  if(dir==="izquierda")px-=18;
+  if(dir==="arriba")py-=12;
+  if(dir==="abajo")py+=12;
+
+  px=Math.max(0,Math.min(px,cancha.clientWidth-25));
+  py=Math.max(0,Math.min(py,cancha.clientHeight-25));
+
+  pelota.style.left=px+"px";
+  pelota.style.top=py+"px";
+ }
+
+ if(px>cancha.clientWidth-50){
+  goles++;
+  golesTexto.textContent=goles;
+  px=180;py=185;
+  pelota.style.left=px+"px";
+  pelota.style.top=py+"px";
+ }
+}
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="ArrowUp")moverFutbol("arriba");
+ if(e.key==="ArrowDown")moverFutbol("abajo");
+ if(e.key==="ArrowLeft")moverFutbol("izquierda");
+ if(e.key==="ArrowRight")moverFutbol("derecha");
+});
+
+function reiniciarFutbol(){
+ fx=100;fy=175;px=180;py=185;goles=0;
+ jugador.style.left=fx+"px";
+ jugador.style.top=fy+"px";
+ pelota.style.left=px+"px";
+ pelota.style.top=py+"px";
+ golesTexto.textContent=0;
+}
+
+
+/* =========================
+SNAKE
+========================= */
+
+const sc=document.getElementById("snakeCanvas");
+const sctx=sc.getContext("2d");
+
+let snake,food,sdir,sgame,sscore;
+
+function startSnake(){
+ snake=[{x:200,y:200}];
+ food=randomFood();
+ sdir={x:20,y:0};
+ sscore=0;
+ sgame=true;
+ document.getElementById("snakeScore").textContent=0;
+}
+
+function randomFood(){
+ return{
+  x:Math.floor(Math.random()*20)*20,
+  y:Math.floor(Math.random()*20)*20
+ };
+}
+
+function snakeDir(d){
+ if(d==="up"&&sdir.y===0)sdir={x:0,y:-20};
+ if(d==="down"&&sdir.y===0)sdir={x:0,y:20};
+ if(d==="left"&&sdir.x===0)sdir={x:-20,y:0};
+ if(d==="right"&&sdir.x===0)sdir={x:20,y:0};
+}
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="ArrowUp")snakeDir("up");
+ if(e.key==="ArrowDown")snakeDir("down");
+ if(e.key==="ArrowLeft")snakeDir("left");
+ if(e.key==="ArrowRight")snakeDir("right");
+});
+
+function snakeLoop(){
+ if(!sgame)return;
+
+ let head={
+  x:snake[0].x+sdir.x,
+  y:snake[0].y+sdir.y
+ };
+
+ if(head.x<0||head.x>=400||head.y<0||head.y>=400||
+ snake.some(p=>p.x===head.x&&p.y===head.y)){
+  sgame=false;
+  return;
+ }
+
+ snake.unshift(head);
+
+ if(head.x===food.x&&head.y===food.y){
+  sscore++;
+  document.getElementById("snakeScore").textContent=sscore;
+  food=randomFood();
+ }else snake.pop();
+
+ drawSnake();
+}
+
+function drawSnake(){
+ sctx.clearRect(0,0,400,400);
+
+ sctx.fillStyle="red";
+ sctx.fillRect(food.x,food.y,20,20);
+
+ sctx.fillStyle="#22dd55";
+ snake.forEach(p=>sctx.fillRect(p.x,p.y,18,18));
+}
+
+function restartSnake(){
+ startSnake();
+ drawSnake();
+}
+
+setInterval(snakeLoop,130);
+startSnake();
+
+
+/* =========================
+ROMPE BLOQUES
+========================= */
+
+const bc=document.getElementById("brickCanvas");
+const bctx=bc.getContext("2d");
+
+let ball={x:350,y:330,dx:4,dy:-4};
+let paddle={x:300,y:370,w:100,h:12};
+let bricks=[];
+let bscore=0;
+let brickRunning=true;
+
+function createBricks(){
+ bricks=[];
+ for(let r=0;r<4;r++){
+  for(let c=0;c<8;c++){
+   bricks.push({
+    x:25+c*85,
+    y:30+r*28,
+    w:70,
+    h:18,
+    alive:true
+   });
+  }
+ }
+}
+
+function drawBrick(){
+ bctx.clearRect(0,0,700,400);
+
+ bctx.fillStyle="white";
+ bctx.beginPath();
+ bctx.arc(ball.x,ball.y,8,0,Math.PI*2);
+ bctx.fill();
+
+ bctx.fillRect(paddle.x,paddle.y,paddle.w,paddle.h);
+
+ bricks.forEach(b=>{
+  if(b.alive)bctx.fillRect(b.x,b.y,b.w,b.h);
+ });
+}
+
+function brickLoop(){
+ if(!brickRunning)return;
+
+ ball.x+=ball.dx;
+ ball.y+=ball.dy;
+
+ if(ball.x<8||ball.x>692)ball.dx*=-1;
+ if(ball.y<8)ball.dy*=-1;
+
+ if(
+ ball.x>paddle.x&&
+ ball.x<paddle.x+paddle.w&&
+ ball.y>paddle.y-10
+ ){
+  ball.dy=-Math.abs(ball.dy);
+ }
+
+ bricks.forEach(b=>{
+  if(
+   b.alive&&
+   ball.x>b.x&&ball.x<b.x+b.w&&
+   ball.y>b.y&&ball.y<b.y+b.h
+  ){
+   b.alive=false;
+   ball.dy*=-1;
+   bscore++;
+   document.getElementById("brickScore").textContent=bscore;
+  }
+ });
+
+ if(ball.y>400){
+  brickRunning=false;
+ }
+
+ if(bricks.every(b=>!b.alive)){
+  brickRunning=false;
+ }
+
+ drawBrick();
+}
+
+function movePaddle(dir){
+ paddle.x+=dir*35;
+ paddle.x=Math.max(0,Math.min(600,paddle.x));
+}
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="ArrowLeft")movePaddle(-1);
+ if(e.key==="ArrowRight")movePaddle(1);
+});
+
+function restartBrick(){
+ ball={x:350,y:330,dx:4,dy:-4};
+ paddle={x:300,y:370,w:100,h:12};
+ bscore=0;
+ brickRunning=true;
+ document.getElementById("brickScore").textContent=0;
+ createBricks();
+ drawBrick();
+}
+
+createBricks();
+setInterval(brickLoop,16);
+
+
+/* =========================
+CARRERAS
+========================= */
+
+const auto=document.getElementById("auto");
+const enemigo=document.getElementById("enemigo");
+const carril=document.getElementById("carril");
+
+let carX=137;
+let enemyX=137;
+let enemyY=-90;
+let raceScore=0;
+let raceRunning=true;
+
+function moveCar(dir){
+ carX+=dir*30;
+ carX=Math.max(5,Math.min(270,carX));
+ auto.style.left=carX+"px";
+}
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="ArrowLeft")moveCar(-1);
+ if(e.key==="ArrowRight")moveCar(1);
+});
+
+function raceLoop(){
+ if(!raceRunning)return;
+
+ enemyY+=5;
+
+ enemigo.style.top=enemyY+"px";
+
+ if(enemyY>480){
+  enemyY=-90;
+  enemyX=Math.floor(Math.random()*9)*30+10;
+  enemigo.style.left=enemyX+"px";
+  raceScore++;
+  document.getElementById("raceScore").textContent=raceScore;
+ }
+
+ if(
+ enemyY>350&&enemyY<470&&
+ enemyX<carX+45&&
+ enemyX+45>carX
+ ){
+  raceRunning=false;
+ }
+}
+
+function restartRace(){
+ carX=137;
+ enemyY=-90;
+ enemyX=137;
+ raceScore=0;
+ raceRunning=true;
+
+ auto.style.left=carX+"px";
+ enemigo.style.left=enemyX+"px";
+ enemigo.style.top=enemyY+"px";
+
+ document.getElementById("raceScore").textContent=0;
+}
+
+setInterval(raceLoop,30);
+</script>
+
+</body>
+</html>
+```
