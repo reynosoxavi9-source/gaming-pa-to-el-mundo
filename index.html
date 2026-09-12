@@ -5,7 +5,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gaming Pa' To' El Mundo</title>
+.contador-visitas{
+ margin:25px auto 0;
+ padding:12px 25px;
+ width:max-content;
+ min-width:190px;
+ border:2px solid white;
+ border-radius:15px;
+ background:rgba(0,0,0,.7);
+ box-shadow:0 0 20px rgba(0,150,255,.5);
+ font-weight:bold;
+ letter-spacing:2px;
+}
 
+.contador-visitas span{
+ display:block;
+ font-size:28px;
+ margin-top:5px;
+ letter-spacing:3px;
+}
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,sans-serif;background:#080b18;color:white}
@@ -135,7 +153,10 @@ content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw">
 </div>
 </div>
 </section>
-
+div class="contador-visitas">
+  <div>👀 VISITAS</div>
+  <span id="contador">000000</span>
+</div>
 <!-- JUEGOS -->
 <section class="juegos" id="juegos">
 
@@ -237,7 +258,29 @@ content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw">
 
 </section>
 
+/* =========================
+CONTADOR DE VISITAS
+========================= */
 
+async function sumarVisita(){
+ try{
+  const respuesta=await fetch(
+   "https://gaming-visitas.reynosoxavi9.workers.dev/visita"
+  );
+
+  const datos=await respuesta.json();
+
+  const visitas=datos.data?.up_count ?? 0;
+
+  document.getElementById("contador").textContent=
+   String(visitas).padStart(6,"0");
+
+ }catch(error){
+  console.log("Error del contador:",error);
+ }
+}
+
+sumarVisita();
 <script>
 /* =========================
 FÚTBOL
