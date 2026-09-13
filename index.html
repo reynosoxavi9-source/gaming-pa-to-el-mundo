@@ -1,6 +1,4 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -46,12 +44,16 @@ body{font-family:Arial,sans-serif;background:#080b18;color:white}
 .circulo-central:after{content:"";position:absolute;width:10px;height:10px;background:white;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}
 .area{position:absolute;width:110px;height:230px;top:105px;border:4px solid white}
 .area-izq{left:-4px}.area-der{right:-4px}
-.porteria-pro{position:absolute;top:155px;width:35px;height:130px;display:flex;align-items:center;justify-content:center;font-size:35px;z-index:2}
+.porteria-pro{
+ position:absolute;top:125px;width:55px;height:190px;
+ display:flex;align-items:center;justify-content:center;
+ font-size:52px;z-index:2
+}
 .porteria-izq{left:0}.porteria-der{right:0}
 .portero{
- position:absolute;width:50px;height:50px;display:flex;align-items:center;justify-content:center;font-size:34px;
- right:18px;top:195px;background:#ffb300;border:3px solid white;border-radius:50%;z-index:6;
- box-shadow:0 4px 10px rgba(0,0,0,.35);transition:top .08s,left .08s
+ position:absolute;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:36px;
+ right:14px;top:190px;background:#ffb300;border:3px solid white;border-radius:50%;z-index:6;
+ box-shadow:0 4px 10px rgba(0,0,0,.4);transition:top .06s,left .06s
 }
 .rival{
  position:absolute;width:45px;height:45px;display:flex;align-items:center;justify-content:center;font-size:28px;
@@ -101,7 +103,8 @@ canvas{display:block;width:100%;max-width:700px;height:auto;margin:auto;backgrou
  .juego{padding:15px}
  .cancha-pro{height:330px}
  .area{height:180px;top:75px}
- .porteria-pro{top:115px}
+ .porteria-pro{top:80px;height:170px;width:48px;font-size:45px}
+ .portero{width:46px;height:46px;font-size:32px;right:7px;top:142px}
  .control{width:58px;height:58px}
 }
 </style>
@@ -284,6 +287,7 @@ function moverJugadorConPosicion(x,y){
  if(disparando)return;
  jugadorX=x-24;jugadorY=y-24;limitesJugador();
  pelotaX=jugadorX+45;pelotaY=jugadorY+10;
+ moverRival();
  actualizarFutbolPro();
 }
 canchaPro.addEventListener("mousemove",e=>{
@@ -311,33 +315,38 @@ canchaPro.addEventListener("touchend",e=>{
 },{passive:false});
 
 function moverFutbolPro(direccion){
- const velocidad=14;
+ const velocidad=22;
  if(direccion==="arriba")jugadorY-=velocidad;
  if(direccion==="abajo")jugadorY+=velocidad;
  if(direccion==="izquierda")jugadorX-=velocidad;
  if(direccion==="derecha")jugadorX+=velocidad;
  limitesJugador();
  if(!disparando){pelotaX=jugadorX+45;pelotaY=jugadorY+10}
+ moverRival();
  actualizarFutbolPro();
 }
 
 function moverRival(){
+ /* El rival persigue al jugador TODO el tiempo que se mueve.
+    Es más lento que el jugador, pero cada nivel aumenta su velocidad. */
+ const objetivoX=jugadorX;
  const objetivoY=jugadorY;
- const rapidez=1.4+(nivelPro*.12);
- if(rivalY<objetivoY)rivalY+=rapidez;
- if(rivalY>objetivoY)rivalY-=rapidez;
+ const rapidez=3.2+(nivelPro*.25);
+
+ if(rivalX<objetivoX) rivalX+=rapidez;
+ if(rivalX>objetivoX) rivalX-=rapidez;
+ if(rivalY<objetivoY) rivalY+=rapidez;
+ if(rivalY>objetivoY) rivalY-=rapidez;
+
+ const maxX=canchaPro.clientWidth-55;
  const maxY=canchaPro.clientHeight-55;
+ rivalX=Math.max(5,Math.min(rivalX,maxX));
  rivalY=Math.max(5,Math.min(rivalY,maxY));
- /* el rival también se acerca lentamente */
- const objetivoX=Math.min(jugadorX+190,canchaPro.clientWidth-120);
- if(rivalX<objetivoX)rivalX+=.45;
- if(rivalX>objetivoX)rivalX-=.25;
- rivalX=Math.max(canchaPro.clientWidth*.48,Math.min(rivalX,canchaPro.clientWidth-80));
 }
 function moverPortero(){
  const centro=canchaPro.clientHeight/2;
  const prediccion=pelotaY+(pelotaX>canchaPro.clientWidth*.65?(jugadorY-porteroY)*.15:0);
- const rapidez=1.8+(nivelPro*.18);
+ const rapidez=3+(nivelPro*.45);
  if(porteroY+25<prediccion)porteroY+=rapidez;
  if(porteroY+25>prediccion)porteroY-=rapidez;
  porteroY=Math.max(5,Math.min(porteroY,canchaPro.clientHeight-55));
@@ -351,7 +360,7 @@ function distancia(ax,ay,bx,by){
 function dispararFutbol(){
  if(disparando||vidasPro<=0)return;
  disparando=true;
- let vx=12+(nivelPro*.55);
+ let vx=15+(nivelPro*.9);
  let vy=(jugadorY+10-(porteroY+25))*.025;
  let pasos=0;
  clearInterval(tiroTimer);
@@ -366,7 +375,6 @@ function dispararFutbol(){
 
   const rx=rivalX+22,ry=rivalY+22;
   const px=pelotaX+15,py=pelotaY+15;
-  const gx=canchaPro.clientWidth-45;
 
   if(distancia(px,py,rx,ry)<38 && pelotaX<canchaPro.clientWidth-125){
    clearInterval(tiroTimer);disparando=false;
@@ -378,10 +386,42 @@ function dispararFutbol(){
    mensajeFutbolPro("🧤 ¡ATAJÓ!");
    perderVida();return;
   }
-  if(pelotaX>=gx){
+  /* La portería está en el lado derecho.
+     El gol SOLO vale si el CENTRO de la pelota entra en el hueco. */
+  const canchaW = canchaPro.clientWidth;
+  const canchaH = canchaPro.clientHeight;
+
+  // Hueco real de la portería (coincide con .porteria-pro).
+  const golTop = canchaH <= 350 ? 80 : 125;
+  const golBottom = canchaH <= 350 ? 250 : 315;
+
+  const pelotaCentroX = pelotaX + 15;
+  const pelotaCentroY = pelotaY + 15;
+
+  // La pelota debe cruzar la línea del arco estando dentro del hueco.
+  const estaEnHueco =
+    pelotaCentroY >= golTop &&
+    pelotaCentroY <= golBottom;
+
+  const cruzaArco =
+    pelotaCentroX >= canchaW - 48 &&
+    pelotaCentroX <= canchaW + 8;
+
+  if(estaEnHueco && cruzaArco){
    clearInterval(tiroTimer);
-   marcarGol();return;
+   marcarGol();
+   return;
   }
+
+  // Si sale por arriba/abajo o por el lado sin entrar al hueco, falla.
+  if(pelotaCentroX > canchaW + 8){
+   clearInterval(tiroTimer);
+   disparando=false;
+   mensajeFutbolPro("❌ ¡Tiro afuera!");
+   perderVida();
+   return;
+  }
+
   if(pasos>70){
    clearInterval(tiroTimer);reiniciarPelota();
   }
@@ -510,8 +550,3 @@ setInterval(raceLoop,30);
 </script>
 </body>
 </html>
-'''
-
-path = Path("/mnt/data/index_gaming_pa_to_el_mundo_mejorado.html")
-path.write_text(html, encoding="utf-8")
-print(f"Archivo creado: {path}")
