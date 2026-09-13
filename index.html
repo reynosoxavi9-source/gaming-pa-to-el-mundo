@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>Gaming Pa' To' El Mundo</title>
 
 <meta name="google-site-verification"
 content="tBjStkwmDHPS0n48PiBecGJwQj3FOFWd5lukZnJJDcw">
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+
+*{
+ box-sizing:border-box;
+ margin:0;
+ padding:0
+}
 
 body{
  font-family:Arial,sans-serif;
@@ -17,138 +27,299 @@ body{
  color:white
 }
 
+/* ================= PORTADA ================= */
+
 .portada{
+
  min-height:100vh;
+
  background-image:
- linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.55)),
+ linear-gradient(
+  rgba(0,0,0,.25),
+  rgba(0,0,0,.55)
+ ),
  url("portada.png");
+
  background-size:cover;
  background-position:center;
+
  display:flex;
  justify-content:center;
  align-items:center;
+
  text-align:center;
- padding:30px
+
+ padding:30px;
+
+ position:relative;
 }
 
 .contenido-portada{
+
  width:100%;
  max-width:1100px;
+
  padding-top:350px
 }
 
-.botones{
+
+/* ================= IDIOMA ================= */
+
+.selector-idioma{
+
+ position:absolute;
+
+ top:25px;
+ right:25px;
+
+ z-index:100;
+
  display:flex;
+ align-items:center;
+ gap:8px;
+
+ padding:8px;
+
+ background:rgba(0,0,0,.75);
+
+ border:2px solid white;
+
+ border-radius:14px;
+
+ box-shadow:
+ 0 0 20px rgba(0,150,255,.4);
+}
+
+.selector-idioma label{
+
+ font-size:22px;
+}
+
+#selectorIdioma{
+
+ padding:10px 14px;
+
+ border-radius:10px;
+
+ border:1px solid white;
+
+ background:#11182c;
+
+ color:white;
+
+ font-size:15px;
+
+ font-weight:bold;
+
+ cursor:pointer;
+
+ outline:none;
+}
+
+#selectorIdioma option{
+
+ background:#11182c;
+ color:white;
+}
+
+
+/* ================= BOTONES ================= */
+
+.botones{
+
+ display:flex;
+
  justify-content:center;
+
  gap:20px;
+
  flex-wrap:wrap
 }
 
 .botones button{
+
  min-width:180px;
+
  padding:17px 25px;
+
  border:2px solid white;
+
  border-radius:15px;
+
  background:rgba(0,0,0,.65);
+
  color:white;
+
  font-size:18px;
+
  font-weight:bold;
+
  cursor:pointer;
+
  transition:.2s
 }
 
 .botones button:hover{
+
  transform:scale(1.08);
- background:rgba(20,100,255,.8)
+
+ background:
+ rgba(20,100,255,.8)
 }
 
+
+/* ================= CONTADOR ================= */
+
 .contador-visitas{
+
  margin:25px auto 0;
+
  padding:12px 25px;
+
  width:max-content;
+
  min-width:190px;
+
  border:2px solid white;
+
  border-radius:15px;
+
  background:rgba(0,0,0,.75);
- box-shadow:0 0 20px rgba(0,150,255,.5);
+
+ box-shadow:
+ 0 0 20px rgba(0,150,255,.5);
+
  font-weight:bold;
+
  letter-spacing:2px
 }
 
 .contador-visitas span{
+
  display:block;
+
  font-size:28px;
+
  margin-top:5px;
+
  letter-spacing:3px
 }
 
+
+/* ================= JUEGOS ================= */
+
 .juegos{
+
  padding:60px 15px;
+
  text-align:center;
+
  background:#080b18
 }
 
 .juegos h2{
+
  font-size:35px;
+
  margin-bottom:15px
 }
 
 .juegos>p{
+
  font-size:18px;
+
  margin-bottom:30px
 }
 
 .juego{
+
  max-width:900px;
+
  margin:35px auto;
+
  padding:25px;
+
  background:#11182c;
+
  border-radius:20px;
- box-shadow:0 0 30px rgba(0,150,255,.2)
+
+ box-shadow:
+ 0 0 30px rgba(0,150,255,.2)
 }
 
 .juego h3{
+
  font-size:28px;
+
  margin-bottom:15px
 }
 
 .marcador{
+
  font-size:23px;
+
  font-weight:bold;
+
  margin:15px
 }
+
 
 /* ================= FUTBOL ================= */
 
 .futbol-pro{
- background:linear-gradient(145deg,#101b30,#07101f);
+
+ background:
+ linear-gradient(
+ 145deg,
+ #101b30,
+ #07101f
+ );
+
  border:2px solid rgba(255,255,255,.15)
 }
 
 .futbol-stats{
+
  display:flex;
+
  justify-content:center;
+
  flex-wrap:wrap;
+
  gap:10px;
+
  margin:15px 0 20px
 }
 
 .futbol-stats span{
+
  background:rgba(0,0,0,.55);
+
  border:1px solid rgba(255,255,255,.2);
+
  padding:9px 14px;
+
  border-radius:10px
 }
 
 .cancha-pro{
+
  position:relative;
+
  width:100%;
+
  max-width:850px;
+
  height:440px;
+
  margin:auto;
+
  overflow:hidden;
+
  border:5px solid white;
+
  border-radius:15px;
+
  background:
  repeating-linear-gradient(
   90deg,
@@ -157,505 +328,952 @@ body{
   #159642 70px,
   #159642 140px
  );
+
  box-shadow:
  0 0 30px rgba(0,255,100,.25),
  inset 0 0 40px rgba(0,0,0,.3);
+
  touch-action:none;
+
  cursor:crosshair
 }
 
 .cancha-pro:before{
+
  content:"";
+
  position:absolute;
+
  inset:0;
+
  background:
  linear-gradient(
-  90deg,
-  rgba(255,255,255,.04),
-  transparent 50%,
-  rgba(0,0,0,.08)
+ 90deg,
+ rgba(255,255,255,.04),
+ transparent 50%,
+ rgba(0,0,0,.08)
  );
+
  pointer-events:none
 }
 
 .linea-mitad{
+
  position:absolute;
+
  width:4px;
+
  height:100%;
+
  background:white;
+
  left:50%;
+
  transform:translateX(-50%);
+
  opacity:.9
 }
 
 .circulo-central{
+
  position:absolute;
+
  width:130px;
+
  height:130px;
+
  border:4px solid white;
+
  border-radius:50%;
+
  left:50%;
+
  top:50%;
+
  transform:translate(-50%,-50%)
 }
 
 .circulo-central:after{
+
  content:"";
+
  position:absolute;
+
  width:10px;
+
  height:10px;
+
  background:white;
+
  border-radius:50%;
+
  left:50%;
+
  top:50%;
+
  transform:translate(-50%,-50%)
 }
 
 .area{
+
  position:absolute;
+
  width:110px;
+
  height:230px;
+
  top:105px;
+
  border:4px solid white
 }
 
-.area-izq{left:-4px}
-.area-der{right:-4px}
+.area-izq{
+ left:-4px
+}
+
+.area-der{
+ right:-4px
+}
 
 .porteria-pro{
+
  position:absolute;
+
  top:125px;
+
  width:55px;
+
  height:190px;
+
  display:flex;
+
  align-items:center;
+
  justify-content:center;
+
  font-size:52px;
+
  z-index:2
 }
 
-.porteria-izq{left:0}
-.porteria-der{right:0}
+.porteria-izq{
+ left:0
+}
+
+.porteria-der{
+ right:0
+}
 
 .portero{
+
  position:absolute;
+
  width:52px;
+
  height:52px;
+
  display:flex;
+
  align-items:center;
+
  justify-content:center;
+
  font-size:36px;
+
  right:14px;
+
  top:190px;
+
  background:#ffb300;
+
  border:3px solid white;
+
  border-radius:50%;
+
  z-index:6;
- box-shadow:0 4px 10px rgba(0,0,0,.4);
- transition:top .06s,left .06s
+
+ box-shadow:
+ 0 4px 10px rgba(0,0,0,.4);
+
+ transition:
+ top .06s,
+ left .06s
 }
 
 .rival{
+
  position:absolute;
+
  width:45px;
+
  height:45px;
+
  display:flex;
+
  align-items:center;
+
  justify-content:center;
+
  font-size:28px;
+
  left:570px;
+
  top:195px;
+
  background:#d71920;
+
  border:3px solid white;
+
  border-radius:50%;
+
  z-index:4;
- box-shadow:0 4px 10px rgba(0,0,0,.35)
+
+ box-shadow:
+ 0 4px 10px rgba(0,0,0,.35)
 }
 
 .jugador-pro{
+
  position:absolute;
+
  width:48px;
+
  height:48px;
+
  display:flex;
+
  align-items:center;
+
  justify-content:center;
+
  font-size:31px;
+
  left:150px;
+
  top:195px;
+
  background:#1680ff;
+
  border:3px solid white;
+
  border-radius:50%;
- box-shadow:0 0 15px rgba(0,140,255,.8);
+
+ box-shadow:
+ 0 0 15px rgba(0,140,255,.8);
+
  z-index:5;
+
  pointer-events:none;
- transition:left .08s,top .08s
+
+ transition:
+ left .08s,
+ top .08s
 }
 
 .jugador-pro:after{
+
  content:"";
+
  position:absolute;
+
  bottom:-7px;
+
  width:25px;
+
  height:7px;
+
  border-radius:50%;
+
  background:rgba(0,0,0,.35);
+
  filter:blur(2px)
 }
 
 .pelota-pro{
+
  position:absolute;
+
  width:30px;
+
  height:30px;
+
  display:flex;
+
  align-items:center;
+
  justify-content:center;
+
  font-size:25px;
+
  left:205px;
+
  top:205px;
+
  z-index:7;
+
  pointer-events:none;
- filter:drop-shadow(0 3px 3px rgba(0,0,0,.5));
- transition:left .04s,top .04s
+
+ filter:
+ drop-shadow(
+ 0 3px 3px rgba(0,0,0,.5)
+ );
+
+ transition:
+ left .04s,
+ top .04s
 }
 
 .sombra-pelota{
+
  position:absolute;
+
  width:20px;
+
  height:7px;
+
  border-radius:50%;
+
  background:rgba(0,0,0,.35);
+
  z-index:6;
+
  pointer-events:none;
+
  filter:blur(2px)
 }
 
 .mensaje-futbol{
+
  position:absolute;
+
  left:50%;
+
  top:20px;
+
  transform:translateX(-50%);
+
  padding:10px 18px;
+
  background:rgba(0,0,0,.78);
+
  border:2px solid white;
+
  border-radius:12px;
+
  font-weight:bold;
+
  opacity:0;
+
  transition:.25s;
+
  z-index:20;
+
  white-space:nowrap
 }
 
 .mensaje-futbol.mostrar{
+
  opacity:1
 }
 
 @keyframes golFutbol{
- 0%{transform:scale(1)}
- 50%{transform:scale(1.5) rotate(15deg)}
- 100%{transform:scale(1)}
+
+ 0%{
+  transform:scale(1)
+ }
+
+ 50%{
+  transform:
+  scale(1.5)
+  rotate(15deg)
+ }
+
+ 100%{
+  transform:scale(1)
+ }
+
 }
 
 @keyframes sacudida{
- 0%,100%{transform:translateX(0)}
- 25%{transform:translateX(-5px)}
- 75%{transform:translateX(5px)}
+
+ 0%,100%{
+  transform:translateX(0)
+ }
+
+ 25%{
+  transform:translateX(-5px)
+ }
+
+ 75%{
+  transform:translateX(5px)
+ }
+
 }
 
 .gol-animacion{
+
  animation:golFutbol .5s
 }
 
 .cancha-gol{
+
  animation:sacudida .35s
 }
 
 canvas{
+
  display:block;
+
  width:100%;
+
  max-width:700px;
+
  height:auto;
+
  margin:auto;
+
  background:#050914;
+
  border:3px solid white;
+
  border-radius:12px
 }
+
 
 /* ================= CONTROLES ================= */
 
 .controles-movil{
+
  display:flex;
+
  flex-direction:column;
+
  align-items:center;
+
  gap:7px;
+
  margin-top:20px
 }
 
 .fila{
+
  display:flex;
+
  gap:7px
 }
 
 .control{
+
  width:62px;
+
  height:62px;
+
  border:2px solid white;
+
  border-radius:14px;
+
  background:#1677ff;
+
  color:white;
+
  font-size:25px;
+
  font-weight:bold;
+
  cursor:pointer;
+
  touch-action:manipulation
 }
 
 .control:active{
+
  transform:scale(.9)
 }
 
 .reiniciar{
+
  margin-top:18px;
+
  padding:12px 25px;
+
  border:0;
+
  border-radius:10px;
+
  background:#1677ff;
+
  color:white;
+
  font-size:16px;
+
  font-weight:bold;
+
  cursor:pointer
 }
 
 .info{
+
  margin-top:15px;
+
  line-height:1.7
 }
+
 
 /* ================= SNAKE ================= */
 
 .snake-pro{
- background:linear-gradient(145deg,#0c1721,#07100f);
+
+ background:
+ linear-gradient(
+ 145deg,
+ #0c1721,
+ #07100f
+ );
+
  border:2px solid rgba(80,255,130,.25)
 }
 
 .snake-stats{
+
  display:flex;
+
  justify-content:center;
+
  flex-wrap:wrap;
+
  gap:8px;
+
  margin:12px 0 18px
 }
 
 .snake-stats span{
+
  padding:8px 12px;
+
  border-radius:10px;
+
  background:rgba(0,0,0,.5);
+
  border:1px solid rgba(255,255,255,.15)
 }
 
 .snake-wrap{
+
  position:relative;
+
  width:min(480px,100%);
+
  margin:auto
 }
 
 .snake-wrap canvas{
+
  width:100%;
+
  height:auto;
+
  aspect-ratio:1/1;
+
  background:#07120d;
+
  border:4px solid white;
+
  border-radius:16px;
- box-shadow:0 0 30px rgba(0,255,100,.18)
+
+ box-shadow:
+ 0 0 30px rgba(0,255,100,.18)
 }
 
 .snake-overlay{
+
  position:absolute;
+
  inset:4px;
+
  display:flex;
+
  align-items:center;
+
  justify-content:center;
+
  background:rgba(0,0,0,.68);
+
  border-radius:12px;
+
  z-index:5
 }
 
 .snake-overlay-box{
+
  padding:25px;
+
  text-align:center;
+
  background:rgba(8,20,18,.94);
+
  border:2px solid rgba(255,255,255,.35);
+
  border-radius:18px
 }
 
 #snakeOverlayTitle{
+
  font-size:27px;
+
  font-weight:bold;
+
  margin-bottom:10px
 }
 
 #snakeOverlayText{
+
  margin-bottom:12px;
+
  line-height:1.5
 }
 
 .snake-powerups{
+
  display:flex;
+
  justify-content:center;
+
  flex-wrap:wrap;
+
  gap:8px;
+
  margin:15px 0
 }
 
 .snake-powerups span{
+
  padding:7px 11px;
+
  background:#101b20;
+
  border-radius:10px;
+
  border:1px solid rgba(255,255,255,.12)
 }
+
 
 /* ================= CARRERAS ================= */
 
 .carril{
+
  position:relative;
+
  width:320px;
+
  height:480px;
+
  max-width:100%;
+
  margin:auto;
+
  background:#333;
+
  border:5px solid white;
+
  overflow:hidden;
+
  border-radius:12px
 }
 
 .linea{
+
  position:absolute;
+
  width:8px;
+
  height:70px;
+
  background:white;
+
  left:70px;
+
  top:0;
+
  box-shadow:160px 0 white;
- animation:carretera .5s linear infinite
+
+ animation:
+ carretera .5s linear infinite
 }
 
 @keyframes carretera{
- to{transform:translateY(90px)}
+
+ to{
+  transform:translateY(90px)
+ }
+
 }
 
 .auto{
+
  position:absolute;
+
  width:45px;
+
  height:75px;
+
  background:#1677ff;
+
  border:3px solid white;
+
  border-radius:10px;
+
  bottom:25px;
+
  left:137px
 }
 
 .enemigo{
+
  position:absolute;
+
  width:45px;
+
  height:75px;
+
  background:#e22;
+
  border:3px solid white;
+
  border-radius:10px;
+
  top:-90px
 }
+
 
 /* ================= CELULAR ================= */
 
 @media(max-width:600px){
 
  .contenido-portada{
+
   padding-top:100px
  }
 
+ .selector-idioma{
+
+  top:12px;
+
+  right:12px;
+
+  padding:6px
+ }
+
+ .selector-idioma label{
+
+  font-size:18px
+ }
+
+ #selectorIdioma{
+
+  padding:8px;
+
+  font-size:13px
+ }
+
  .botones button{
+
   width:100%;
+
   max-width:300px
  }
 
  .juego{
+
   padding:15px
  }
 
  .cancha-pro{
+
   height:330px
  }
 
  .area{
+
   height:180px;
+
   top:75px
  }
 
  .porteria-pro{
+
   top:80px;
+
   height:170px;
+
   width:48px;
+
   font-size:45px
  }
 
  .portero{
+
   width:46px;
+
   height:46px;
+
   font-size:32px;
+
   right:7px;
+
   top:142px
  }
 
  .control{
+
   width:58px;
+
   height:58px
  }
+
 }
+
 </style>
+
 </head>
 
+
 <body>
+
 
 <!-- ================= PORTADA ================= -->
 
 <section class="portada">
 
+
+ <!-- SELECTOR DE IDIOMA -->
+
+ <div class="selector-idioma">
+
+  <label for="selectorIdioma">
+   🌎
+  </label>
+
+  <select id="selectorIdioma">
+
+   <option value="es">🇪🇸 Español</option>
+
+   <option value="en">🇺🇸 English</option>
+
+   <option value="pt">🇧🇷 Português</option>
+
+   <option value="fr">🇫🇷 Français</option>
+
+   <option value="de">🇩🇪 Deutsch</option>
+
+   <option value="it">🇮🇹 Italiano</option>
+
+   <option value="ja">🇯🇵 日本語</option>
+
+   <option value="ko">🇰🇷 한국어</option>
+
+   <option value="zh">🇨🇳 中文</option>
+
+   <option value="ru">🇷🇺 Русский</option>
+
+   <option value="ar">🇸🇦 العربية</option>
+
+   <option value="hi">🇮🇳 हिन्दी</option>
+
+   <option value="tr">🇹🇷 Türkçe</option>
+
+   <option value="nl">🇳🇱 Nederlands</option>
+
+   <option value="pl">🇵🇱 Polski</option>
+
+   <option value="uk">🇺🇦 Українська</option>
+
+   <option value="el">🇬🇷 Ελληνικά</option>
+
+   <option value="id">🇮🇩 Indonesia</option>
+
+   <option value="th">🇹🇭 ไทย</option>
+
+   <option value="vi">🇻🇳 Tiếng Việt</option>
+
+  </select>
+
+ </div>
+
+
  <div class="contenido-portada">
+
 
   <div class="botones">
 
-   <button id="btnJugar" onclick="location.href='#juegos'">
+
+   <button
+   id="btnJugar"
+   onclick="location.href='#juegos'">
+
     🎮 JUGAR
+
    </button>
 
-   <button id="btnJuegos" onclick="location.href='#juegos'">
+
+   <button
+   id="btnJuegos"
+   onclick="location.href='#juegos'">
+
     🕹️ JUEGOS
+
    </button>
 
-   <button id="btnFavoritos" onclick="location.href='#juegos'">
+
+   <button
+   id="btnFavoritos"
+   onclick="location.href='#juegos'">
+
     ⭐ FAVORITOS
+
    </button>
 
-   <button id="btnCategorias" onclick="location.href='#juegos'">
+
+   <button
+   id="btnCategorias"
+   onclick="location.href='#juegos'">
+
     🟩 CATEGORÍAS
+
    </button>
+
 
   </div>
+
 
   <div class="contador-visitas">
 
-   <div id="textoVisitas">👀 VISITAS</div>
+   <div id="textoVisitas">
+    👀 VISITAS
+   </div>
 
-   <span id="contador">000000</span>
+   <span id="contador">
+    000000
+   </span>
 
   </div>
+
 
  </div>
 
 </section>
 
+
 <!-- ================= JUEGOS ================= -->
 
-<section class="juegos" id="juegos">
+<section
+class="juegos"
+id="juegos">
 
- <h2 id="tituloJuegos">🔥 Juegos</h2>
+
+ <h2 id="tituloJuegos">
+  🔥 Juegos
+ </h2>
+
 
  <p id="descripcionJuegos">
   Juegos originales para jugar directamente desde el navegador.
@@ -666,35 +1284,72 @@ canvas{
 
  <div class="juego futbol-pro">
 
+
   <h3 id="tituloFutbol">
    ⚽ Fútbol Pa' To'
   </h3>
 
+
   <div class="futbol-stats">
 
+
    <span>
-    <span id="labelGoles">⚽ Goles:</span>
+
+    <span id="labelGoles">
+     ⚽ Goles:
+    </span>
+
     <b id="goles">0</b>
+
    </span>
 
-   <span>
-    <span id="labelRecord">🏆 Récord:</span>
-    <b id="recordFutbol">0</b>
-   </span>
 
    <span>
-    <span id="labelNivel">🔥 Nivel:</span>
-    <b id="nivelFutbol">1</b>
+
+    <span id="labelRecord">
+     🏆 Récord:
+    </span>
+
+    <b id="recordFutbol">
+     0
+    </b>
+
    </span>
 
+
    <span>
-    <span id="labelVidas">❤️ Vidas:</span>
-    <b id="vidasFutbol">3</b>
+
+    <span id="labelNivel">
+     🔥 Nivel:
+    </span>
+
+    <b id="nivelFutbol">
+     1
+    </b>
+
    </span>
+
+
+   <span>
+
+    <span id="labelVidas">
+     ❤️ Vidas:
+    </span>
+
+    <b id="vidasFutbol">
+     3
+    </b>
+
+   </span>
+
 
   </div>
 
-  <div class="cancha-pro" id="cancha">
+
+  <div
+  class="cancha-pro"
+  id="cancha">
+
 
    <div class="linea-mitad"></div>
 
@@ -704,71 +1359,141 @@ canvas{
 
    <div class="area area-der"></div>
 
-   <div class="porteria-pro porteria-izq">🥅</div>
-
-   <div class="porteria-pro porteria-der">🥅</div>
-
-   <div class="portero" id="portero">🧤</div>
-
-   <div class="rival" id="rival">🔴</div>
-
-   <div class="jugador-pro" id="jugador">🔵</div>
-
-   <div class="pelota-pro" id="pelota">⚽</div>
-
-   <div class="sombra-pelota" id="sombraPelota"></div>
-
-   <div class="mensaje-futbol" id="mensajeFutbol">
-    ¡Mete gol! 🔥
+   <div class="porteria-pro porteria-izq">
+    🥅
    </div>
 
+   <div class="porteria-pro porteria-der">
+    🥅
+   </div>
+
+   <div
+   class="portero"
+   id="portero">
+    🧤
+   </div>
+
+   <div
+   class="rival"
+   id="rival">
+    🔴
+   </div>
+
+   <div
+   class="jugador-pro"
+   id="jugador">
+    🔵
+   </div>
+
+   <div
+   class="pelota-pro"
+   id="pelota">
+    ⚽
+   </div>
+
+   <div
+   class="sombra-pelota"
+   id="sombraPelota">
+   </div>
+
+   <div
+   class="mensaje-futbol"
+   id="mensajeFutbol">
+
+    ¡Mete gol! 🔥
+
+   </div>
+
+
   </div>
+
 
   <div class="controles-movil">
 
+
    <div class="fila">
-    <button class="control" onclick="moverFutbolPro('arriba')">
+
+    <button
+    class="control"
+    onclick="moverFutbolPro('arriba')">
+
      ⬆️
+
     </button>
+
    </div>
+
 
    <div class="fila">
 
-    <button class="control" onclick="moverFutbolPro('izquierda')">
+
+    <button
+    class="control"
+    onclick="moverFutbolPro('izquierda')">
+
      ⬅️
+
     </button>
 
-    <button class="control" onclick="dispararFutbol()">
+
+    <button
+    class="control"
+    onclick="dispararFutbol()">
+
      ⚽
+
     </button>
 
-    <button class="control" onclick="moverFutbolPro('derecha')">
+
+    <button
+    class="control"
+    onclick="moverFutbolPro('derecha')">
+
      ➡️
+
     </button>
+
 
    </div>
+
 
    <div class="fila">
 
-    <button class="control" onclick="moverFutbolPro('abajo')">
+    <button
+    class="control"
+    onclick="moverFutbolPro('abajo')">
+
      ⬇️
+
     </button>
 
    </div>
+
 
   </div>
 
-  <div class="info" id="infoFutbol">
+
+  <div
+  class="info"
+  id="infoFutbol">
+
    🖱️ PC: mueve el mouse por la cancha.<br>
    👆 Celular: mueve el dedo por la cancha.<br>
    ⚽ Botón de pelota o doble toque = disparar.<br>
    ⌨️ ESPACIO = disparar.
+
   </div>
 
-  <button class="reiniciar" id="btnReiniciarFutbol"
+
+  <button
+  class="reiniciar"
+  id="btnReiniciarFutbol"
   onclick="reiniciarFutbolPro()">
+
    🔄 Reiniciar partido
+
   </button>
+
 
  </div>
 
@@ -777,65 +1502,116 @@ canvas{
 
  <div class="juego snake-pro">
 
+
   <h3 id="tituloSnake">
    🐍 Snake Evolution
   </h3>
 
+
   <div class="snake-stats">
 
-   <span>
-    <span id="labelSnakePuntos">⭐ Puntos:</span>
-    <b id="snakeScore">0</b>
-   </span>
 
    <span>
-    <span id="labelSnakeRecord">🏆 Récord:</span>
-    <b id="snakeRecord">0</b>
+
+    <span id="labelSnakePuntos">
+     ⭐ Puntos:
+    </span>
+
+    <b id="snakeScore">
+     0
+    </b>
+
    </span>
 
-   <span>
-    <span id="labelSnakeNivel">🔥 Nivel:</span>
-    <b id="snakeLevel">1</b>
-   </span>
 
    <span>
-    <span id="labelSnakeVidas">❤️ Vidas:</span>
-    <b id="snakeLives">3</b>
+
+    <span id="labelSnakeRecord">
+     🏆 Récord:
+    </span>
+
+    <b id="snakeRecord">
+     0
+    </b>
+
    </span>
+
+
+   <span>
+
+    <span id="labelSnakeNivel">
+     🔥 Nivel:
+    </span>
+
+    <b id="snakeLevel">
+     1
+    </b>
+
+   </span>
+
+
+   <span>
+
+    <span id="labelSnakeVidas">
+     ❤️ Vidas:
+    </span>
+
+    <b id="snakeLives">
+     3
+    </b>
+
+   </span>
+
 
   </div>
 
+
   <div class="snake-wrap">
+
 
    <canvas
    id="snakeCanvas"
    width="480"
-   height="480"></canvas>
+   height="480">
+   </canvas>
 
-   <div id="snakeOverlay" class="snake-overlay">
+
+   <div
+   id="snakeOverlay"
+   class="snake-overlay">
+
 
     <div class="snake-overlay-box">
+
 
      <div id="snakeOverlayTitle">
       🐍 Snake Evolution
      </div>
 
+
      <div id="snakeOverlayText">
       ¡Come la comida y consigue el récord!
      </div>
+
 
      <button
      class="reiniciar"
      onclick="restartSnake()"
      id="btnJugarSnake">
+
       ▶️ Jugar
+
      </button>
+
 
     </div>
 
+
    </div>
 
+
   </div>
+
 
   <div class="snake-powerups">
 
@@ -849,49 +1625,26 @@ canvas{
 
   </div>
 
-  <div class="controles-movil">
 
-   <div class="fila">
+  <div
+  class="info"
+  id="infoSnake">
 
-    <button class="control"
-    onclick="snakeDir('up')">
-     ⬆️
-    </button>
-
-   </div>
-
-   <div class="fila">
-
-    <button class="control"
-    onclick="snakeDir('left')">
-     ⬅️
-    </button>
-
-    <button class="control"
-    onclick="snakeDir('down')">
-     ⬇️
-    </button>
-
-    <button class="control"
-    onclick="snakeDir('right')">
-     ➡️
-    </button>
-
-   </div>
-
-  </div>
-
-  <div class="info" id="infoSnake">
    🐍 PC: Flechas o WASD · 📱 Celular: botones ·
    Come comida, estrellas y power-ups.
+
   </div>
+
 
   <button
   class="reiniciar"
   onclick="restartSnake()"
   id="btnReiniciarSnake">
+
    🔄 Reiniciar
+
   </button>
+
 
  </div>
 
@@ -900,9 +1653,11 @@ canvas{
 
  <div class="juego">
 
+
   <h3 id="tituloBloques">
    🧱 Rompe Bloques
   </h3>
+
 
   <div class="marcador">
 
@@ -910,46 +1665,69 @@ canvas{
     Puntos:
    </span>
 
-   <span id="brickScore">0</span>
+   <span id="brickScore">
+    0
+   </span>
 
   </div>
+
 
   <canvas
   id="brickCanvas"
   width="700"
-  height="400"></canvas>
+  height="400">
+  </canvas>
+
 
   <div class="controles-movil">
 
+
    <div class="fila">
+
 
     <button
     class="control"
     onclick="movePaddle(-1)">
+
      ⬅️
+
     </button>
+
 
     <button
     class="control"
     onclick="movePaddle(1)">
+
      ➡️
+
     </button>
+
 
    </div>
 
+
   </div>
 
-  <div class="info" id="infoBrick">
+
+  <div
+  class="info"
+  id="infoBrick">
+
    💻 Usa ⬅️ ➡️.<br>
    📱 Usa los botones.
+
   </div>
+
 
   <button
   class="reiniciar"
   onclick="restartBrick()"
   id="btnReiniciarBrick">
+
    🔄 Reiniciar
+
   </button>
+
 
  </div>
 
@@ -958,9 +1736,11 @@ canvas{
 
  <div class="juego">
 
+
   <h3 id="tituloCarreras">
    🏎️ Carreras
   </h3>
+
 
   <div class="marcador">
 
@@ -968,52 +1748,85 @@ canvas{
     Puntos:
    </span>
 
-   <span id="raceScore">0</span>
+   <span id="raceScore">
+    0
+   </span>
 
   </div>
 
-  <div class="carril" id="carril">
+
+  <div
+  class="carril"
+  id="carril">
+
 
    <div class="linea"></div>
 
-   <div class="auto" id="auto"></div>
+   <div
+   class="auto"
+   id="auto">
+   </div>
 
-   <div class="enemigo" id="enemigo"></div>
+   <div
+   class="enemigo"
+   id="enemigo">
+   </div>
+
 
   </div>
 
+
   <div class="controles-movil">
 
+
    <div class="fila">
+
 
     <button
     class="control"
     onclick="moveCar(-1)">
+
      ⬅️
+
     </button>
+
 
     <button
     class="control"
     onclick="moveCar(1)">
+
      ➡️
+
     </button>
+
 
    </div>
 
+
   </div>
 
-  <div class="info" id="infoCarreras">
+
+  <div
+  class="info"
+  id="infoCarreras">
+
    🏎️ Esquiva los autos.
+
   </div>
+
 
   <button
   class="reiniciar"
   onclick="restartRace()"
   id="btnReiniciarRace">
+
    🔄 Reiniciar
+
   </button>
 
+
  </div>
+
 
 </section>
 
@@ -1021,7 +1834,7 @@ canvas{
 <script>
 
 /* =====================================================
-   🌎 SISTEMA DE IDIOMA AUTOMÁTICO
+   🌎 SISTEMA DE IDIOMA
 ===================================================== */
 
 const traducciones={
@@ -1569,9 +2382,23 @@ infoCarreras:"🏎️ Tránh những chiếc xe."
 };
 
 
-/* Detectar idioma */
+/* =====================================================
+   🌎 IDIOMA
+===================================================== */
 
 function detectarIdioma(){
+
+ const guardado=
+ localStorage.getItem(
+  "idiomaGaming"
+ );
+
+ if(
+  guardado &&
+  traducciones[guardado]
+ ){
+  return guardado;
+ }
 
  const idiomaNavegador=
  navigator.language ||
@@ -1579,9 +2406,13 @@ function detectarIdioma(){
  "es";
 
  const codigo=
- idiomaNavegador.toLowerCase().split("-")[0];
+ idiomaNavegador
+ .toLowerCase()
+ .split("-")[0];
 
- if(traducciones[codigo]){
+ if(
+  traducciones[codigo]
+ ){
   return codigo;
  }
 
@@ -1589,95 +2420,250 @@ function detectarIdioma(){
 }
 
 
-/* Aplicar idioma */
+function aplicarIdioma(idioma){
 
-function aplicarIdioma(){
+ if(
+  !traducciones[idioma]
+ ){
+  idioma="es";
+ }
 
- const idioma=detectarIdioma();
- const t=traducciones[idioma];
+ const t=
+ traducciones[idioma];
 
- document.documentElement.lang=idioma;
+ document.documentElement.lang=
+ idioma;
 
- document.getElementById("btnJugar").textContent=t.jugar;
- document.getElementById("btnJuegos").textContent=t.juegos;
- document.getElementById("btnFavoritos").textContent=t.favoritos;
- document.getElementById("btnCategorias").textContent=t.categorias;
 
- document.getElementById("textoVisitas").textContent=t.visitas;
+ /* Guardar idioma */
 
- document.getElementById("tituloJuegos").textContent=t.tituloJuegos;
- document.getElementById("descripcionJuegos").textContent=t.descripcion;
+ localStorage.setItem(
+  "idiomaGaming",
+  idioma
+ );
 
- document.getElementById("tituloFutbol").textContent=t.futbol;
 
- document.getElementById("labelGoles").textContent=t.goles;
- document.getElementById("labelRecord").textContent=t.record;
- document.getElementById("labelNivel").textContent=t.nivel;
- document.getElementById("labelVidas").textContent=t.vidas;
+ /* Selector */
 
- document.getElementById("btnReiniciarFutbol").textContent=
+ document.getElementById(
+  "selectorIdioma"
+ ).value=
+ idioma;
+
+
+ /* Portada */
+
+ document.getElementById(
+  "btnJugar"
+ ).textContent=
+ t.jugar;
+
+ document.getElementById(
+  "btnJuegos"
+ ).textContent=
+ t.juegos;
+
+ document.getElementById(
+  "btnFavoritos"
+ ).textContent=
+ t.favoritos;
+
+ document.getElementById(
+  "btnCategorias"
+ ).textContent=
+ t.categorias;
+
+
+ document.getElementById(
+  "textoVisitas"
+ ).textContent=
+ t.visitas;
+
+
+ /* Juegos */
+
+ document.getElementById(
+  "tituloJuegos"
+ ).textContent=
+ t.tituloJuegos;
+
+ document.getElementById(
+  "descripcionJuegos"
+ ).textContent=
+ t.descripcion;
+
+
+ /* Fútbol */
+
+ document.getElementById(
+  "tituloFutbol"
+ ).textContent=
+ t.futbol;
+
+ document.getElementById(
+  "labelGoles"
+ ).textContent=
+ t.goles;
+
+ document.getElementById(
+  "labelRecord"
+ ).textContent=
+ t.record;
+
+ document.getElementById(
+  "labelNivel"
+ ).textContent=
+ t.nivel;
+
+ document.getElementById(
+  "labelVidas"
+ ).textContent=
+ t.vidas;
+
+
+ document.getElementById(
+  "btnReiniciarFutbol"
+ ).textContent=
  t.reiniciarPartido;
 
- document.getElementById("tituloSnake").textContent=t.snake;
 
- document.getElementById("labelSnakePuntos").textContent=t.puntos;
- document.getElementById("labelSnakeRecord").textContent=t.record;
- document.getElementById("labelSnakeNivel").textContent=t.nivel;
- document.getElementById("labelSnakeVidas").textContent=t.vidas;
+ /* Snake */
 
- document.getElementById("btnJugarSnake").textContent=t.jugarSnake;
+ document.getElementById(
+  "tituloSnake"
+ ).textContent=
+ t.snake;
 
- document.getElementById("snakeOverlayText").textContent=
+ document.getElementById(
+  "labelSnakePuntos"
+ ).textContent=
+ t.puntos;
+
+ document.getElementById(
+  "labelSnakeRecord"
+ ).textContent=
+ t.record;
+
+ document.getElementById(
+  "labelSnakeNivel"
+ ).textContent=
+ t.nivel;
+
+ document.getElementById(
+  "labelSnakeVidas"
+ ).textContent=
+ t.vidas;
+
+ document.getElementById(
+  "btnJugarSnake"
+ ).textContent=
+ t.jugarSnake;
+
+ document.getElementById(
+  "snakeOverlayText"
+ ).textContent=
  t.snakeTexto;
 
- document.getElementById("btnReiniciarSnake").textContent=
+ document.getElementById(
+  "btnReiniciarSnake"
+ ).textContent=
  t.reiniciar;
 
- document.getElementById("tituloBloques").textContent=t.bloques;
 
- document.getElementById("labelBrickPuntos").textContent=
+ /* Bloques */
+
+ document.getElementById(
+  "tituloBloques"
+ ).textContent=
+ t.bloques;
+
+ document.getElementById(
+  "labelBrickPuntos"
+ ).textContent=
  t.puntos;
 
- document.getElementById("btnReiniciarBrick").textContent=
+ document.getElementById(
+  "btnReiniciarBrick"
+ ).textContent=
  t.reiniciar;
 
- document.getElementById("tituloCarreras").textContent=t.carreras;
 
- document.getElementById("labelRacePuntos").textContent=
+ /* Carreras */
+
+ document.getElementById(
+  "tituloCarreras"
+ ).textContent=
+ t.carreras;
+
+ document.getElementById(
+  "labelRacePuntos"
+ ).textContent=
  t.puntos;
 
- document.getElementById("btnReiniciarRace").textContent=
+ document.getElementById(
+  "btnReiniciarRace"
+ ).textContent=
  t.reiniciar;
 
- document.getElementById("infoFutbol").innerHTML=
+
+ /* Información */
+
+ document.getElementById(
+  "infoFutbol"
+ ).innerHTML=
  t.infoFutbol;
 
- document.getElementById("infoSnake").textContent=
+ document.getElementById(
+  "infoSnake"
+ ).textContent=
  t.infoSnake;
 
- document.getElementById("infoBrick").innerHTML=
+ document.getElementById(
+  "infoBrick"
+ ).innerHTML=
  t.infoBrick;
 
- document.getElementById("infoCarreras").textContent=
+ document.getElementById(
+  "infoCarreras"
+ ).textContent=
  t.infoCarreras;
 
 }
 
 
+/* Cambio manual */
+
+document.getElementById(
+ "selectorIdioma"
+).addEventListener(
+ "change",
+ function(){
+
+  aplicarIdioma(
+   this.value
+  );
+
+ }
+);
+
+
 /* =====================================================
    👀 CONTADOR
-   SE CONSERVA
+   NO SE TOCA
 ===================================================== */
 
 const URL_CONTADOR=
 "https://gaming-visitas.reynosoxavi9.workers.dev/visita";
+
 
 async function cargarVisitas(){
 
  try{
 
   const respuesta=
-  await fetch(URL_CONTADOR);
+  await fetch(
+   URL_CONTADOR
+  );
 
   const datos=
   await respuesta.json();
@@ -1685,8 +2671,11 @@ async function cargarVisitas(){
   const visitas=
   datos.data?.up_count ?? 0;
 
-  document.getElementById("contador").textContent=
-  String(visitas).padStart(6,"0");
+  document.getElementById(
+   "contador"
+  ).textContent=
+  String(visitas)
+  .padStart(6,"0");
 
  }catch(error){
 
@@ -1699,19 +2688,25 @@ async function cargarVisitas(){
 
 }
 
+
 async function sumarVisitaUnaVez(){
 
- const clave="visitaContadaGaming";
+ const clave=
+ "visitaContadaGaming";
 
  const yaContada=
- localStorage.getItem(clave);
+ localStorage.getItem(
+  clave
+ );
 
  if(!yaContada){
 
   try{
 
    const respuesta=
-   await fetch(URL_CONTADOR);
+   await fetch(
+    URL_CONTADOR
+   );
 
    if(respuesta.ok){
 
@@ -1737,6 +2732,7 @@ async function sumarVisitaUnaVez(){
 
 }
 
+
 sumarVisitaUnaVez();
 
 
@@ -1745,61 +2741,94 @@ sumarVisitaUnaVez();
 ===================================================== */
 
 const canchaPro=
-document.getElementById("cancha");
+document.getElementById(
+ "cancha"
+);
 
 const jugadorPro=
-document.getElementById("jugador");
+document.getElementById(
+ "jugador"
+);
 
 const pelotaPro=
-document.getElementById("pelota");
+document.getElementById(
+ "pelota"
+);
 
 const rivalPro=
-document.getElementById("rival");
+document.getElementById(
+ "rival"
+);
 
 const porteroPro=
-document.getElementById("portero");
+document.getElementById(
+ "portero"
+);
 
 const sombraPelota=
-document.getElementById("sombraPelota");
+document.getElementById(
+ "sombraPelota"
+);
 
 const golesProTexto=
-document.getElementById("goles");
+document.getElementById(
+ "goles"
+);
 
 const recordProTexto=
-document.getElementById("recordFutbol");
+document.getElementById(
+ "recordFutbol"
+);
 
 const nivelProTexto=
-document.getElementById("nivelFutbol");
+document.getElementById(
+ "nivelFutbol"
+);
 
 const vidasProTexto=
-document.getElementById("vidasFutbol");
+document.getElementById(
+ "vidasFutbol"
+);
 
 const mensajePro=
-document.getElementById("mensajeFutbol");
+document.getElementById(
+ "mensajeFutbol"
+);
+
 
 let jugadorX=150;
+
 let jugadorY=195;
 
 let pelotaX=205;
+
 let pelotaY=205;
 
 let golesPro=0;
+
 let vidasPro=3;
+
 let nivelPro=1;
 
 let recordPro=
 Number(
- localStorage.getItem("recordFutbol")
+ localStorage.getItem(
+  "recordFutbol"
+ )
 )||0;
 
 let porteroY=195;
 
 let rivalX=570;
+
 let rivalY=195;
 
 let disparando=false;
+
 let tiroTimer=null;
+
 let ultimoToque=0;
+
 
 recordProTexto.textContent=
 recordPro;
@@ -1935,7 +2964,8 @@ canchaPro.addEventListener(
 
   if(disparando)return;
 
-  const t=e.touches[0];
+  const t=
+  e.touches[0];
 
   const r=
   canchaPro.getBoundingClientRect();
@@ -1946,7 +2976,9 @@ canchaPro.addEventListener(
   );
 
  },
- {passive:false}
+ {
+  passive:false
+ }
 );
 
 
@@ -1958,7 +2990,8 @@ canchaPro.addEventListener(
 
   if(disparando)return;
 
-  const t=e.touches[0];
+  const t=
+  e.touches[0];
 
   const r=
   canchaPro.getBoundingClientRect();
@@ -1969,7 +3002,9 @@ canchaPro.addEventListener(
   );
 
  },
- {passive:false}
+ {
+  passive:false
+ }
 );
 
 
@@ -1993,14 +3028,18 @@ canchaPro.addEventListener(
   if(
    ahora-ultimoToque<350
   ){
+
    dispararFutbol();
+
   }
 
   ultimoToque=
   ahora;
 
  },
- {passive:false}
+ {
+  passive:false
+ }
 );
 
 
@@ -2008,16 +3047,24 @@ function moverFutbolPro(direccion){
 
  const velocidad=22;
 
- if(direccion==="arriba")
+ if(
+  direccion==="arriba"
+ )
  jugadorY-=velocidad;
 
- if(direccion==="abajo")
+ if(
+  direccion==="abajo"
+ )
  jugadorY+=velocidad;
 
- if(direccion==="izquierda")
+ if(
+  direccion==="izquierda"
+ )
  jugadorX-=velocidad;
 
- if(direccion==="derecha")
+ if(
+  direccion==="derecha"
+ )
  jugadorX+=velocidad;
 
  limitesJugador();
@@ -2048,18 +3095,27 @@ function moverRival(){
  jugadorY;
 
  const rapidez=
- 3.2+(nivelPro*.25);
+ 3.2+
+ (nivelPro*.25);
 
- if(rivalX<objetivoX)
+ if(
+  rivalX<objetivoX
+ )
  rivalX+=rapidez;
 
- if(rivalX>objetivoX)
+ if(
+  rivalX>objetivoX
+ )
  rivalX-=rapidez;
 
- if(rivalY<objetivoY)
+ if(
+  rivalY<objetivoY
+ )
  rivalY+=rapidez;
 
- if(rivalY>objetivoY)
+ if(
+  rivalY>objetivoY
+ )
  rivalY-=rapidez;
 
  const maxX=
@@ -2071,13 +3127,19 @@ function moverRival(){
  rivalX=
  Math.max(
   5,
-  Math.min(rivalX,maxX)
+  Math.min(
+   rivalX,
+   maxX
+  )
  );
 
  rivalY=
  Math.max(
   5,
-  Math.min(rivalY,maxY)
+  Math.min(
+   rivalY,
+   maxY
+  )
  );
 
 }
@@ -2100,12 +3162,17 @@ function moverPortero(){
  );
 
  const rapidez=
- 3+(nivelPro*.45);
+ 3+
+ (nivelPro*.45);
 
- if(porteroY+25<prediccion)
+ if(
+  porteroY+25<prediccion
+ )
  porteroY+=rapidez;
 
- if(porteroY+25>prediccion)
+ if(
+  porteroY+25>prediccion
+ )
  porteroY-=rapidez;
 
  porteroY=
@@ -2121,14 +3188,21 @@ function moverPortero(){
 
   porteroY=
   centro-25+
-  Math.sin(Date.now()/500)*55;
+  Math.sin(
+   Date.now()/500
+  )*55;
 
  }
 
 }
 
 
-function distancia(ax,ay,bx,by){
+function distancia(
+ ax,
+ ay,
+ bx,
+ by
+){
 
  return Math.hypot(
   ax-bx,
@@ -2143,12 +3217,14 @@ function dispararFutbol(){
  if(
   disparando||
   vidasPro<=0
- )return;
+ )
+ return;
 
  disparando=true;
 
  let vx=
- 15+(nivelPro*.9);
+ 15+
+ (nivelPro*.9);
 
  let vy=
  (
@@ -2195,7 +3271,10 @@ function dispararFutbol(){
 
    if(
     distancia(
-     px,py,rx,ry
+     px,
+     py,
+     rx,
+     ry
     )<38 &&
     pelotaX<
     canchaPro.clientWidth-125
@@ -2339,7 +3418,9 @@ function marcarGol(){
  golesProTexto.textContent=
  golesPro;
 
- if(golesPro>recordPro){
+ if(
+  golesPro>recordPro
+ ){
 
   recordPro=
   golesPro;
@@ -2403,7 +3484,9 @@ function perderVida(){
 
  disparando=false;
 
- if(vidasPro<=0){
+ if(
+  vidasPro<=0
+ ){
 
   mensajeFutbolPro(
    "💀 ¡GAME OVER!"
@@ -2497,14 +3580,11 @@ function reiniciarFutbolPro(){
  porteroY=
  canchaPro.clientHeight/2-25;
 
- golesProTexto.textContent=
- 0;
+ golesProTexto.textContent=0;
 
- vidasProTexto.textContent=
- 3;
+ vidasProTexto.textContent=3;
 
- nivelProTexto.textContent=
- 1;
+ nivelProTexto.textContent=1;
 
  actualizarFutbolPro();
 
@@ -2519,19 +3599,29 @@ document.addEventListener(
  "keydown",
  e=>{
 
-  if(e.key==="ArrowUp")
+  if(
+   e.key==="ArrowUp"
+  )
   moverFutbolPro("arriba");
 
-  if(e.key==="ArrowDown")
+  if(
+   e.key==="ArrowDown"
+  )
   moverFutbolPro("abajo");
 
-  if(e.key==="ArrowLeft")
+  if(
+   e.key==="ArrowLeft"
+  )
   moverFutbolPro("izquierda");
 
-  if(e.key==="ArrowRight")
+  if(
+   e.key==="ArrowRight"
+  )
   moverFutbolPro("derecha");
 
-  if(e.code==="Space"){
+  if(
+   e.code==="Space"
+  ){
 
    e.preventDefault();
 
@@ -2553,6 +3643,7 @@ window.addEventListener(
 
  }
 );
+
 
 actualizarFutbolPro();
 
@@ -2604,13 +3695,17 @@ document.getElementById(
  "snakeLives"
 );
 
+
 const S=30;
+
 const GRID=16;
 
 let snake=[];
 
 let food=null;
+
 let star=null;
+
 let power=null;
 
 let sdir={
@@ -2633,13 +3728,17 @@ Number(
 )||0;
 
 let slevel=1;
+
 let slives=3;
+
 let sgame=false;
 
 let turboUntil=0;
+
 let shieldUntil=0;
 
 let snakeTimer=null;
+
 
 snakeRecordEl.textContent=
 srecord;
@@ -2663,11 +3762,16 @@ function freeCell(){
 
  }while(
   snake.some(
-   p=>p.x===x&&p.y===y
+   p=>
+   p.x===x &&
+   p.y===y
   )
  );
 
- return{x,y};
+ return{
+  x,
+  y
+ };
 
 }
 
@@ -2734,6 +3838,7 @@ function drawSnake(){
   480
  );
 
+
  for(
   let y=0;
   y<GRID;
@@ -2748,7 +3853,7 @@ function drawSnake(){
 
    sctx.fillStyle=
    (x+y)%2
-   ?" #0b2114"
+   ?"#0b2114"
    :"#091a10";
 
    sctx.fillRect(
@@ -2860,6 +3965,7 @@ function drawSnake(){
 
    sctx.fill();
 
+
    if(i===0){
 
     sctx.fillStyle=
@@ -2921,7 +4027,11 @@ function drawSnake(){
 }
 
 
-function overlay(t,m,button){
+function overlay(
+ t,
+ m,
+ button
+){
 
  snakeOverlayTitle.textContent=
  t;
@@ -2974,28 +4084,30 @@ function restartSnake(){
  };
 
  sscore=0;
+
  slevel=1;
+
  slives=3;
 
  turboUntil=0;
+
  shieldUntil=0;
 
  food=null;
+
  star=null;
+
  power=null;
 
  spawnFood();
 
  sgame=true;
 
- snakeScoreEl.textContent=
- 0;
+ snakeScoreEl.textContent=0;
 
- snakeLevelEl.textContent=
- 1;
+ snakeLevelEl.textContent=1;
 
- snakeLivesEl.textContent=
- 3;
+ snakeLivesEl.textContent=3;
 
  hideOverlay();
 
@@ -3017,7 +4129,9 @@ function loseSnakeLife(){
  snakeLivesEl.textContent=
  slives;
 
- if(slives<=0){
+ if(
+  slives<=0
+ ){
 
   sgame=false;
 
@@ -3078,7 +4192,8 @@ function loseSnakeLife(){
 
 function snakeLoop(){
 
- if(!sgame)return;
+ if(!sgame)
+ return;
 
  sdir=nextDir;
 
@@ -3155,10 +4270,12 @@ function snakeLoop(){
 
    power={
     ...freeCell(),
+
     type:
     Math.random()<.5
     ?"turbo"
     :"shield",
+
     life:180
    };
 
@@ -3262,6 +4379,7 @@ function snakeLoop(){
   (slevel-1)*8
  );
 
+
  const speed=
  turboUntil>Date.now()
  ?
@@ -3271,6 +4389,7 @@ function snakeLoop(){
  )
  :
  normal;
+
 
  clearInterval(
   snakeTimer
@@ -3307,7 +4426,9 @@ document.addEventListener(
 
   };
 
-  if(m[e.key]){
+  if(
+   m[e.key]
+  ){
 
    e.preventDefault();
 
@@ -3342,6 +4463,7 @@ document.getElementById(
 const bctx=
 bc.getContext("2d");
 
+
 let ball={
  x:350,
  y:330,
@@ -3349,12 +4471,14 @@ let ball={
  dy:-4
 };
 
+
 let paddle={
  x:300,
  y:370,
  w:100,
  h:12
 };
+
 
 let bricks=[];
 
@@ -3382,9 +4506,13 @@ function createBricks(){
    bricks.push({
 
     x:25+c*85,
+
     y:30+r*28,
+
     w:70,
+
     h:18,
+
     alive:true
 
    });
@@ -3408,6 +4536,7 @@ function drawBrick(){
  bctx.fillStyle=
  "white";
 
+
  bctx.beginPath();
 
  bctx.arc(
@@ -3419,6 +4548,7 @@ function drawBrick(){
  );
 
  bctx.fill();
+
 
  bctx.fillRect(
   paddle.x,
@@ -3450,7 +4580,8 @@ function drawBrick(){
 
 function brickLoop(){
 
- if(!brickRunning)return;
+ if(!brickRunning)
+ return;
 
  ball.x+=ball.dx;
 
@@ -3467,7 +4598,9 @@ function brickLoop(){
  }
 
 
- if(ball.y<8){
+ if(
+  ball.y<8
+ ){
 
   ball.dy*=-1;
 
@@ -3648,7 +4781,8 @@ function moveCar(dir){
 
 function raceLoop(){
 
- if(!raceRunning)return;
+ if(!raceRunning)
+ return;
 
  enemyY+=5;
 
@@ -3656,7 +4790,9 @@ function raceLoop(){
  enemyY+"px";
 
 
- if(enemyY>480){
+ if(
+  enemyY>480
+ ){
 
   enemyY=-90;
 
@@ -3730,7 +4866,12 @@ setInterval(
    🌎 ACTIVAR IDIOMA
 ===================================================== */
 
-aplicarIdioma();
+const idiomaInicial=
+detectarIdioma();
+
+aplicarIdioma(
+ idiomaInicial
+);
 
 </script>
 
