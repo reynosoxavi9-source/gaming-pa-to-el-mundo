@@ -89,6 +89,19 @@ canvas{display:block;width:100%;max-width:700px;height:auto;margin:auto;backgrou
 .reiniciar{margin-top:18px;padding:12px 25px;border:0;border-radius:10px;background:#1677ff;color:white;font-size:16px;font-weight:bold;cursor:pointer}
 .info{margin-top:15px;line-height:1.7}
 
+/* ===== SNAKE EVOLUTION =====
+.snake-pro{background:linear-gradient(145deg,#0c1721,#07100f);border:2px solid rgba(80,255,130,.25)}
+.snake-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
+.snake-stats span{padding:8px 12px;border-radius:10px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.15)}
+.snake-wrap{position:relative;width:min(480px,100%);margin:auto}
+.snake-wrap canvas{width:100%;height:auto;aspect-ratio:1/1;background:#07120d;border:4px solid white;border-radius:16px;box-shadow:0 0 30px rgba(0,255,100,.18)}
+.snake-overlay{position:absolute;inset:4px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.68);border-radius:12px;z-index:5}
+.snake-overlay-box{padding:25px;text-align:center;background:rgba(8,20,18,.94);border:2px solid rgba(255,255,255,.35);border-radius:18px}
+#snakeOverlayTitle{font-size:27px;font-weight:bold;margin-bottom:10px}
+#snakeOverlayText{margin-bottom:12px;line-height:1.5}
+.snake-powerups{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:15px 0}
+.snake-powerups span{padding:7px 11px;background:#101b20;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
+
 /* ===== CARRERAS ===== */
 .carril{position:relative;width:320px;height:480px;max-width:100%;margin:auto;background:#333;border:5px solid white;overflow:hidden;border-radius:12px}
 .linea{position:absolute;width:8px;height:70px;background:white;left:70px;top:0;box-shadow:160px 0 white;animation:carretera .5s linear infinite}
@@ -168,19 +181,30 @@ canvas{display:block;width:100%;max-width:700px;height:auto;margin:auto;backgrou
 <button class="reiniciar" onclick="reiniciarFutbolPro()">🔄 Reiniciar partido</button>
 </div>
 
-<div class="juego">
-<h3>🐍 Snake</h3>
-<div class="marcador">Puntos: <span id="snakeScore">0</span></div>
-<canvas id="snakeCanvas" width="400" height="400"></canvas>
-<div class="controles-movil">
- <div class="fila"><button class="control" onclick="snakeDir('up')">⬆️</button></div>
- <div class="fila">
-  <button class="control" onclick="snakeDir('left')">⬅️</button>
-  <button class="control" onclick="snakeDir('down')">⬇️</button>
-  <button class="control" onclick="snakeDir('right')">➡️</button>
+<div class="juego snake-pro">
+<h3>🐍 Snake Evolution</h3>
+<div class="snake-stats">
+ <span>⭐ Puntos: <b id="snakeScore">0</b></span>
+ <span>🏆 Récord: <b id="snakeRecord">0</b></span>
+ <span>🔥 Nivel: <b id="snakeLevel">1</b></span>
+ <span>❤️ Vidas: <b id="snakeLives">3</b></span>
+</div>
+<div class="snake-wrap">
+ <canvas id="snakeCanvas" width="480" height="480"></canvas>
+ <div id="snakeOverlay" class="snake-overlay">
+  <div class="snake-overlay-box">
+   <div id="snakeOverlayTitle">🐍 Snake Evolution</div>
+   <div id="snakeOverlayText">¡Come la comida y consigue el récord!</div>
+   <button class="reiniciar" onclick="restartSnake()">▶️ Jugar</button>
+  </div>
  </div>
 </div>
-<div class="info">🐍 Come la comida y no choques contigo.</div>
+<div class="snake-powerups"><span>🍎 +10</span><span>⭐ +25</span><span>⚡ Turbo</span><span>🛡️ Escudo</span></div>
+<div class="controles-movil">
+ <div class="fila"><button class="control" onclick="snakeDir('up')">⬆️</button></div>
+ <div class="fila"><button class="control" onclick="snakeDir('left')">⬅️</button><button class="control" onclick="snakeDir('down')">⬇️</button><button class="control" onclick="snakeDir('right')">➡️</button></div>
+</div>
+<div class="info">🐍 PC: Flechas o WASD · 📱 Celular: botones · Come comida, estrellas y power-ups.</div>
 <button class="reiniciar" onclick="restartSnake()">🔄 Reiniciar</button>
 </div>
 
@@ -485,37 +509,54 @@ window.addEventListener("resize",()=>{
 });
 actualizarFutbolPro();
 
-/* ===== SNAKE ===== */
+/* ===== SNAKE EVOLUTION ===== */
 const sc=document.getElementById("snakeCanvas"),sctx=sc.getContext("2d");
-let snake=[],food,sdir,sgame,sscore;
-function startSnake(){
- snake=[{x:200,y:200}];food=randomFood();sdir={x:20,y:0};sscore=0;sgame=true;
- document.getElementById("snakeScore").textContent=0;
+const snakeOverlay=document.getElementById("snakeOverlay"),snakeOverlayTitle=document.getElementById("snakeOverlayTitle"),snakeOverlayText=document.getElementById("snakeOverlayText");
+const snakeScoreEl=document.getElementById("snakeScore"),snakeRecordEl=document.getElementById("snakeRecord"),snakeLevelEl=document.getElementById("snakeLevel"),snakeLivesEl=document.getElementById("snakeLives");
+const S=30,GRID=16;
+let snake=[],food=null,star=null,power=null,sdir={x:1,y:0},nextDir={x:1,y:0};
+let sscore=0,srecord=Number(localStorage.getItem("snakeRecord"))||0,slevel=1,slives=3,sgame=false,turboUntil=0,shieldUntil=0,snakeTimer=null,foodPulse=0;
+snakeRecordEl.textContent=srecord;
+function freeCell(){let x,y;do{x=Math.floor(Math.random()*GRID);y=Math.floor(Math.random()*GRID)}while(snake.some(p=>p.x===x&&p.y===y));return{x,y}}
+function spawnFood(){food={...freeCell(),type:"apple"}}
+function snakeDir(d){const m={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}},n=m[d];if(n&&!(n.x===-sdir.x&&n.y===-sdir.y))nextDir=n}
+function drawSnake(){
+ sctx.clearRect(0,0,480,480);
+ for(let y=0;y<GRID;y++)for(let x=0;x<GRID;x++){sctx.fillStyle=(x+y)%2?"#0b2114":"#091a10";sctx.fillRect(x*S,y*S,S,S)}
+ if(food){sctx.font="25px Arial";sctx.textAlign="center";sctx.textBaseline="middle";sctx.fillText("🍎",food.x*S+15,food.y*S+16)}
+ if(star){sctx.font="25px Arial";sctx.fillText("⭐",star.x*S+15,star.y*S+16)}
+ if(power){sctx.font="24px Arial";sctx.fillText(power.type==="turbo"?"⚡":"🛡️",power.x*S+15,power.y*S+16)}
+ snake.forEach((p,i)=>{const x=p.x*S+3,y=p.y*S+3,w=24;const g=sctx.createLinearGradient(x,y,x+w,y+w);g.addColorStop(0,i?"#24e878":"#66ff99");g.addColorStop(1,i?"#079447":"#0acb5b");sctx.fillStyle=g;sctx.beginPath();sctx.roundRect(x,y,w,w,8);sctx.fill();if(i===0){sctx.fillStyle="white";sctx.beginPath();sctx.arc(x+17,y+7,3,0,7);sctx.arc(x+17,y+17,3,0,7);sctx.fill()}})
+ if(shieldUntil>Date.now()&&snake.length){const h=snake[0];sctx.strokeStyle="rgba(100,220,255,.9)";sctx.lineWidth=3;sctx.beginPath();sctx.arc(h.x*S+15,h.y*S+15,19,0,7);sctx.stroke()}
+ foodPulse+=.1
 }
-function randomFood(){return{x:Math.floor(Math.random()*20)*20,y:Math.floor(Math.random()*20)*20}}
-function snakeDir(d){
- if(d==="up"&&sdir.y===0)sdir={x:0,y:-20};
- if(d==="down"&&sdir.y===0)sdir={x:0,y:20};
- if(d==="left"&&sdir.x===0)sdir={x:-20,y:0};
- if(d==="right"&&sdir.x===0)sdir={x:20,y:0};
+function overlay(t,m,button){snakeOverlayTitle.textContent=t;snakeOverlayText.textContent=m;snakeOverlay.style.display="flex";snakeOverlay.querySelector("button").style.display=button?"inline-block":"none"}
+function hideOverlay(){snakeOverlay.style.display="none"}
+function restartSnake(){
+ clearInterval(snakeTimer);snake=[{x:8,y:8},{x:7,y:8},{x:6,y:8},{x:5,y:8}];sdir={x:1,y:0};nextDir={x:1,y:0};sscore=0;slevel=1;slives=3;turboUntil=0;shieldUntil=0;food=null;star=null;power=null;spawnFood();sgame=true;
+ snakeScoreEl.textContent=0;snakeLevelEl.textContent=1;snakeLivesEl.textContent=3;hideOverlay();drawSnake();snakeTimer=setInterval(snakeLoop,170)
+}
+function loseSnakeLife(reason){
+ slives--;snakeLivesEl.textContent=slives;
+ if(slives<=0){sgame=false;clearInterval(snakeTimer);overlay("💀 GAME OVER","Puntuación: "+sscore+" · Récord: "+srecord,true);return}
+ snake=[{x:8,y:8},{x:7,y:8},{x:6,y:8}];sdir={x:1,y:0};nextDir={x:1,y:0};shieldUntil=Date.now()+2200;overlay("❤️ ¡Cuidado!","Te queda(n) "+slives+" vida(s).",false);setTimeout(()=>{if(sgame)hideOverlay()},800)
 }
 function snakeLoop(){
- if(!sgame)return;
- let head={x:snake[0].x+sdir.x,y:snake[0].y+sdir.y};
- if(head.x<0||head.x>=400||head.y<0||head.y>=400||snake.some(p=>p.x===head.x&&p.y===head.y)){sgame=false;return}
- snake.unshift(head);
- if(head.x===food.x&&head.y===food.y){sscore++;document.getElementById("snakeScore").textContent=sscore;food=randomFood()}else snake.pop();
- drawSnake();
+ if(!sgame)return;sdir=nextDir;const h=snake[0],nh={x:h.x+sdir.x,y:h.y+sdir.y};
+ if(nh.x<0||nh.x>=GRID||nh.y<0||nh.y>=GRID||snake.some((p,i)=>i>0&&p.x===nh.x&&p.y===nh.y)){if(shieldUntil<=Date.now())loseSnakeLife("choque");else{sdir={x:-sdir.x,y:-sdir.y};nextDir=sdir}return}
+ snake.unshift(nh);
+ if(food&&nh.x===food.x&&nh.y===food.y){sscore+=10;food=null;spawnFood();if(Math.random()<.35)star=freeCell();if(Math.random()<.25)power={...freeCell(),type:Math.random()<.5?"turbo":"shield",life:180}}else snake.pop();
+ if(star){if(nh.x===star.x&&nh.y===star.y){sscore+=25;star=null}}
+ if(power){power.life--;if(nh.x===power.x&&nh.y===power.y){if(power.type==="turbo")turboUntil=Date.now()+6000;else shieldUntil=Date.now()+6000;power=null}else if(power.life<=0)power=null}
+ slevel=Math.floor(sscore/50)+1;snakeScoreEl.textContent=sscore;snakeLevelEl.textContent=slevel;
+ if(sscore>srecord){srecord=sscore;localStorage.setItem("snakeRecord",srecord);snakeRecordEl.textContent=srecord}
+ drawSnake();const normal=170-Math.min(75,(slevel-1)*8),speed=turboUntil>Date.now()?Math.max(45,normal-55):normal;clearInterval(snakeTimer);snakeTimer=setInterval(snakeLoop,speed)
 }
-function drawSnake(){
- sctx.clearRect(0,0,400,400);
- sctx.fillStyle="red";sctx.fillRect(food.x,food.y,20,20);
- sctx.fillStyle="#22dd55";snake.forEach(p=>sctx.fillRect(p.x,p.y,18,18));
-}
-function restartSnake(){startSnake();drawSnake()}
-setInterval(snakeLoop,130);startSnake();drawSnake();
+document.addEventListener("keydown",e=>{const m={ArrowUp:"up",ArrowDown:"down",ArrowLeft:"left",ArrowRight:"right",w:"up",W:"up",s:"down",S:"down",a:"left",A:"left",d:"right",D:"right"};if(m[e.key]){e.preventDefault();snakeDir(m[e.key])}});
+restartSnake();overlay("🐍 Snake Evolution","¡Come la comida y consigue el récord!",true);
 
 /* ===== ROMPE BLOQUES ===== */
+
 const bc=document.getElementById("brickCanvas"),bctx=bc.getContext("2d");
 let ball={x:350,y:330,dx:4,dy:-4},paddle={x:300,y:370,w:100,h:12},bricks=[],bscore=0,brickRunning=true;
 function createBricks(){bricks=[];for(let r=0;r<4;r++)for(let c=0;c<8;c++)bricks.push({x:25+c*85,y:30+r*28,w:70,h:18,alive:true})}
@@ -534,6 +575,19 @@ function brickLoop(){
 function movePaddle(dir){paddle.x+=dir*35;paddle.x=Math.max(0,Math.min(600,paddle.x))}
 function restartBrick(){ball={x:350,y:330,dx:4,dy:-4};paddle={x:300,y:370,w:100,h:12};bscore=0;brickRunning=true;document.getElementById("brickScore").textContent=0;createBricks();drawBrick()}
 createBricks();drawBrick();setInterval(brickLoop,16);
+
+/* ===== SNAKE EVOLUTION =====
+.snake-pro{background:linear-gradient(145deg,#0c1721,#07100f);border:2px solid rgba(80,255,130,.25)}
+.snake-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
+.snake-stats span{padding:8px 12px;border-radius:10px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.15)}
+.snake-wrap{position:relative;width:min(480px,100%);margin:auto}
+.snake-wrap canvas{width:100%;height:auto;aspect-ratio:1/1;background:#07120d;border:4px solid white;border-radius:16px;box-shadow:0 0 30px rgba(0,255,100,.18)}
+.snake-overlay{position:absolute;inset:4px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.68);border-radius:12px;z-index:5}
+.snake-overlay-box{padding:25px;text-align:center;background:rgba(8,20,18,.94);border:2px solid rgba(255,255,255,.35);border-radius:18px}
+#snakeOverlayTitle{font-size:27px;font-weight:bold;margin-bottom:10px}
+#snakeOverlayText{margin-bottom:12px;line-height:1.5}
+.snake-powerups{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:15px 0}
+.snake-powerups span{padding:7px 11px;background:#101b20;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
 
 /* ===== CARRERAS ===== */
 const auto=document.getElementById("auto"),enemigo=document.getElementById("enemigo");
